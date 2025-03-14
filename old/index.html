@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+
+    <main>
+        <div class="container">
+            <input id="todo-name" type="text" placeholder="Enter todo ...">
+            <button id="add-todo">Add todo</button>
+        </div>
+        <ul class="todos"></ul>
+    </main>
+
+
+
+    <script>
+        const nameInp = document.querySelector("#todo-name")
+        const addTodoBtn = document.querySelector("#add-todo")
+        const todosBox = document.querySelector(".todos")
+        setUpTodos()
+
+        addTodoBtn.addEventListener('click', addTodo)
+        function addTodo(e) {
+            if (nameInp.value.length == 0) return alert("Enter todo first ...")
+           
+            // todos.innerHTML += todo
+            saveTodos(nameInp.value)
+            nameInp.value = ""
+        }
+        function deleteTodo(e) {
+            const text = e.target.previousElementSibling.textContent
+            let todos = getTodosFromLS()
+            let iOfTodo = todos.indexOf(text)
+            todos.splice(iOfTodo, 1)
+            localStorage.setItem("todos", JSON.stringify(todos))
+            setUpTodos()
+        }
+        function saveTodos(newTodo) { // сохранять заметки
+            const todos = getTodosFromLS() // []
+            todos.push(newTodo)
+            localStorage.setItem("todos", JSON.stringify(todos))
+            setUpTodos()
+        }
+        function setUpTodos() { // вставить заметки на страницу
+                                // обновить страницу с заметками
+            todosBox.innerHTML = ""
+            const todos = getTodosFromLS()
+            for (let text of todos) {
+                let todo = `
+                    <li>
+                        <span class="text">${text}</span>
+                        <span class="delete" onclick="deleteTodo(event)">❌</span>
+                    </li>
+                `
+                todosBox.innerHTML += todo
+            }
+        }
+        function getTodosFromLS() { // взять всех заметок из LS
+            return JSON.parse(localStorage.getItem("todos") || "[]")
+        }
+
+        // localStorage
+        // sessionStorage
+
+        // - getItem('key')         => даёт инфо
+        // - setItem('key', value)  => создаёт инфо
+
+        // JSON
+        //  - stringify(...)  =>  вставит на кавички (превращает на str)
+        //  - parse(...)      =>  берёт из кавычек (распаковывает)
+    </script>
+
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: 0.5s;
+    }
+
+    main {
+        width: 50%;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #333;
+        color: snow;
+    }
+
+    .todos {
+        padding: 10px;
+        background-color: #111;
+        border-radius: 5px;
+    }
+
+    input,
+    button {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        outline: none;
+        background-color: lightgray;
+        display: block;
+        margin: 2px 0;
+        width: 100%;
+        border: none;
+    }
+
+    input:focus {
+        background-color: snow;
+        color: black;
+    }
+
+    button:hover {
+        background-color: green;
+        color: snow;
+    }
+
+    li {
+        list-style-type: none;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        background-color: black;
+        padding: 10px;
+    }
+    li .delete {
+        float: right;
+        cursor: pointer;
+    }
+</style>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form>
+        <input id="username" type="text" placeholder="Name" required> <br>
+        <input id="surname" type="text" placeholder="Surname" required> <br>
+        <input id="food" type="text" placeholder="Favorite food" required> <br>
+        <input id="age" type="number" placeholder="Age" required> <br>
+        <button>Submit</button>
+    </form>
+
+    <ul>
+
+    </ul>
+
+
+    <script>
+        const username = document.querySelector('#username')
+        const surname = document.querySelector('#surname')
+        const food = document.querySelector('#food')
+        const age = document.querySelector('#age')
+        const button = document.querySelector('form button')
+        const ul = document.querySelector('ul')
+
+        const URL = "http://localhost:3000/users"
+        button.addEventListener('click', createUser)
+
+        getUsers()
+
+        async function createUser(e) {
+            e.preventDefault()
+
+            const data = {
+                "name": username.value,
+                "surname": surname.value,
+                "favorite_food": food.value,
+                "age": age.value,
+            }
+
+            let response = await fetch(URL, {
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+            let info = await response.json()
+            console.log(info)
+            getUsers()
+        }
+
+
+        async function getUsers() {
+            let response = await fetch(URL)
+            let data = await response.json()
+            for (let user of data) {
+                let li = `
+                    <li>${user.name} ${user.surname}
+                        <span onclick="deleteUser(event)">❌</span>
+                    </li>
+                `
+                ul.innerHTML += li
+            }
+        }
+
+        async function deleteUser(event) { }
+    </script>
+
+</body>
+
+</html>
