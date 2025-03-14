@@ -1,0 +1,36 @@
+@mixin flex($direction:row, $align:center, $justify:center, $gap:10px) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+}
+
+
+.box {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #eee;
+    @include flex(column, $gap:0);
+
+    h1 {
+        color: green;
+    }
+
+    button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: lightgray;
+        @include flex();
+
+        &:hover {
+            background-color: black;
+            color: red;
+
+            span {
+                color: blue;
+            }
+        }
+    }
+}

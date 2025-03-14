@@ -1,0 +1,31 @@
+.box {
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.box h1 {
+  color: green;
+}
+.box button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.box button:hover {
+  background-color: black;
+  color: red;
+}
+.box button:hover span {
+  color: blue;
+}/*# sourceMappingURL=style.css.map */
