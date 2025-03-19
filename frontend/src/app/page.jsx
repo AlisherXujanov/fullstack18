@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Heading from "./components/Heading"
+import Searchbox from "./components/Searchbox"
 
 
 export default function Home() {
@@ -7,8 +8,7 @@ export default function Home() {
     <div>
       {/* <h1>Hello world</h1> */}
       <Heading color='red' bg='black'>Home page</Heading>
-      <Heading color='snow' bg='red'>Test text</Heading>
-      <Heading color='cyan' bg='#333'></Heading>
+      <Searchbox></Searchbox>
     </div>
   )
 }
