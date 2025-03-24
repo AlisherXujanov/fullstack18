@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../assets/styles/initial.scss"
 
 export default function RootLayout({ children }) {
   return (
@@ -7,5 +7,5 @@ export default function RootLayout({ children }) {
         {children}
       </body>
     </html>
-  );
+  )
 }

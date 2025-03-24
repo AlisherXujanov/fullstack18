@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.scss"
 
 function Heading(props) {
     // props  ==>  properties  ==>  {children:null}
