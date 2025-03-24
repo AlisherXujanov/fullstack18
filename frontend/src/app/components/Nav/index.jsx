@@ -11,8 +11,6 @@ import Link from "next/link"
 // RU: это новый способ
 // import Link from "next/link";
 
-
-
 function Nav() {
     return (
         <nav className="nav-wrapper">

@@ -5,7 +5,7 @@ function Heading(props) {
     const CHILDREN = props.children ? props.children : "Text is missing...!!!"
     return (
         <h1 className="heading-wrapper">
-            {CHILDREN} 
+            {CHILDREN}
         </h1>
     )
 }
