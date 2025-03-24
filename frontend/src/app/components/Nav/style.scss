@@ -1,0 +1,15 @@
+@import "../../../assets/styles/globals";
+
+.nav-wrapper {
+    padding: 50px 150px;
+    text-align: center;
+    @include flex($justify: space-between);
+
+    .left {
+        @include flex($gap: 50px);
+    }
+
+    .right {
+        @include flex($gap: 20px);
+    }
+}

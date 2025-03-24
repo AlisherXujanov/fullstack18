@@ -15,14 +15,21 @@ function Nav() {
     return (
         <nav className="nav-wrapper">
             <div className="left">
-                <Image 
-                    src={LogoPng} 
-                    alt="logo-image" 
-                    width={50} height={50} 
-                />
+                <Link href="/">
+                    <Image
+                        src={LogoPng}
+                        alt="logo-image"
+                        width={107} height={33}
+                    />
+                </Link>
                 <input type="search" placeholder="Search..." />
             </div>
-            <div className="right"></div>
+            <div className="right">
+                <Link href="/">Explore</Link>
+                <Link href="/about">About</Link>
+                <Link href="/trending">Trending🔥</Link>
+                <Link href="/faq">FAQ💬</Link>
+            </div>
         </nav>
     );
 }
