@@ -1,9 +1,15 @@
-@import "../../../assets/styles/globals";
+@use "../../../assets/styles/globals" as *;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 
 .nav-wrapper {
     padding: 50px 150px;
     text-align: center;
     @include flex($justify: space-between);
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 
     .left {
         @include flex($gap: 50px);
@@ -11,5 +17,37 @@
 
     .right {
         @include flex($gap: 20px);
-    }
 }
+}
+
+
+
+.search-container {
+    @include flex();
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 12px 15px;
+    background-color: $light-gray;
+    color: $text-color;
+    max-width: 500px;
+    font-size: 1px;
+    
+    & :focus{
+        transform: scale(1.015);
+    }
+
+    .search-input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: 18px;
+        width: 100%;
+        color: $text-color;
+    }
+    
+}
+
+
+
+
+

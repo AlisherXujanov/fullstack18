@@ -1,4 +1,4 @@
-@import "globals.scss";
+@use "globals.scss" as *;
 
 ::before,
 ::after,
@@ -24,4 +24,8 @@ a {
     text-decoration: none;
     color: $text-color;
     padding: 10px;
+}
+
+::selection {
+    background: #ffb7b7;
 }
