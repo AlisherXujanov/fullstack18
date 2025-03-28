@@ -8,11 +8,6 @@
     background-color: $light-gray;
     color: $text-color;
     max-width: 500px;
-    font-size: 1px;
-
-    & :focus {
-        transform: scale(1.015);
-    }
 
     .search-input {
         border: none;

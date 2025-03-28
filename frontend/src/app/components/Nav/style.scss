@@ -17,5 +17,15 @@
 
     .right {
         @include flex($gap: 20px);
+
+        a {
+            padding: 20px 10px;
+
+            &.active {
+                color: $red;
+                font-weight: bold;
+                border-bottom: 2px solid $red;
+            }
+        }
     }
 }
