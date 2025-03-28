@@ -1,34 +1,13 @@
 @use "../../../assets/styles/globals" as *;
 @use "../../../assets/styles/initial.scss" as *;
 
-.connect-wallet-div{
+.connect-wallet-div {
     padding: 20px 150px;
     @include grid(2, 20px);
 
     .left {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
-        h5 {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            color: $text-color;
-            font-family: "DM Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: normal;
-            font-style: normal;
-        }
-
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-        h1 {
-            font-family: "Raleway", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: bold;
-            font-style: normal;
-            font-size: 4.5em;
-            letter-spacing: -0.02em;
-            line-height: 80px;
-        }
 
         p {
             font-family: "DM Sans", sans-serif;
@@ -40,7 +19,7 @@
             margin-bottom: 30px;
         }
 
-        .button{
+        .button {
             font-family: "DM Sans", sans-serif;
             font-optical-sizing: auto;
             font-weight: bold;
@@ -51,16 +30,14 @@
             border-radius: 13px;
             color: $white;
             width: 200px;
-            max-width: 500px;   
+            max-width: 500px;
             cursor: pointer;
             transition: 0.3s ease;
-            
+
             &:hover {
                 padding: 19px 25px;
                 background: $red-gradient-reverse;
             }
         }
-
     }
-
 }
