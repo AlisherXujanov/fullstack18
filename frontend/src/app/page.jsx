@@ -1,9 +1,10 @@
 import Heading from "./components/Heading"
+import Wallet from "./components/Wallet";
 
 function Home() {
   return (
     <div className="home-page-wrapper">
-      <Heading color='red' bg='black'>Home page</Heading>
+      <Wallet></Wallet>
     </div>
   )
 }

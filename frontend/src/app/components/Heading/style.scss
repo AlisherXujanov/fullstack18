@@ -1,3 +1,7 @@
-@import "../../../assets/styles/globals.scss";
+@use "../../../assets/styles/globals.scss" as *;
 
-.heading-wrapper {}
+.heading-wrapper {
+    text-align: center;
+    background: $dark;
+    color: $light;
+}
