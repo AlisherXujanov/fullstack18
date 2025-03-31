@@ -1,6 +1,7 @@
 import "./style.scss"
 import TrendingNFTs from "../../../store/db.json"
 import Image from "next/image"
+import Item from "./item"
 
 function TrendingArt() {
     return (
@@ -8,7 +9,7 @@ function TrendingArt() {
             <h1>Trending Art 🔥</h1>
             <p>Discover more</p>
 
-            <div className="nft-item-wrapper">
+            {/* <div className="nft-item-wrapper">
                 <Image 
                     src={''} 
                     alt="NFT thumbnail" 
@@ -29,7 +30,18 @@ function TrendingArt() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
+            {TrendingNFTs.trandingNfts.map(nft => {
+                return (
+                    <Item
+                        key={nft.id}
+                        name={nft.name}
+                        price={nft.price}
+                        image={nft.image}
+                    />
+                )
+            })}
+
         </div>
     );
 }

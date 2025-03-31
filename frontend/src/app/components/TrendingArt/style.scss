@@ -1,0 +1,27 @@
+@use "../../../assets/styles/globals" as *;
+
+.nft-item-wrapper {
+    background-color: $light;
+    border-radius: 10px;
+    padding: 10px;
+
+    img {
+        margin-bottom: 10px;
+    }
+
+    .nft-inner-info {
+        width: 100%;
+
+        .details {
+            @include grid(2);
+
+            .price {
+                text-align: right;
+
+                .text-muted {
+                    color: $dark-gray;
+                }
+            }
+        }
+    }
+}
