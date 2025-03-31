@@ -1,25 +1,46 @@
 @use "../../../assets/styles/globals" as *;
 
-.nft-item-wrapper {
-    background-color: $light;
-    border-radius: 10px;
-    padding: 10px;
 
-    img {
-        margin-bottom: 10px;
+.trending-art-wrapper {
+    padding: 20px 150px;
+
+    .intro {
+        margin-bottom: 20px;
+        @include flex($justify: space-between);
     }
 
-    .nft-inner-info {
-        width: 100%;
 
-        .details {
-            @include grid(2);
+    .nft-items-wrapper {
+        @include flex(row, center, space-between);
 
-            .price {
-                text-align: right;
+        .nft-item-wrapper {
+            width: 365px;
+            background-color: $light;
+            border-radius: 10px;
+            padding: 10px;
 
-                .text-muted {
-                    color: $dark-gray;
+            img {
+                margin-bottom: 10px;
+            }
+
+            .nft-inner-info {
+                font-family: sans-serif;
+
+                .details {
+                    @include grid(2);
+                    align-items: center;
+
+                    .author {
+                        font-size: large;
+                    }
+
+                    .price {
+                        text-align: right;
+
+                        .text-muted {
+                            color: $dark-gray;
+                        }
+                    }
                 }
             }
         }

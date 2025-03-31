@@ -6,8 +6,10 @@ import Item from "./item"
 function TrendingArt() {
     return (
         <div className="trending-art-wrapper">
-            <h1>Trending Art 🔥</h1>
-            <p>Discover more</p>
+            <div className="intro">
+                <h1>Trending Art 🔥</h1>
+                <p>Discover more</p>
+            </div>
 
             {/* <div className="nft-item-wrapper">
                 <Image 
@@ -31,16 +33,19 @@ function TrendingArt() {
                     </div>
                 </div>
             </div> */}
-            {TrendingNFTs.trandingNfts.map(nft => {
-                return (
-                    <Item
-                        key={nft.id}
-                        name={nft.name}
-                        price={nft.price}
-                        image={nft.image}
-                    />
-                )
-            })}
+            <div className="nft-items-wrapper">
+                {TrendingNFTs.trandingNfts.map(nft => {
+                    return (
+                        <Item
+                            key={nft.id}
+                            name={nft.name}
+                            price={nft.price}
+                            authorName={nft.authorName}
+                            imageIndex={nft.id-1}
+                        />
+                    )
+                })}
+            </div>
 
         </div>
     );
