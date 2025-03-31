@@ -1,8 +1,8 @@
 {
     "trandingNfts": [
-        { "id":"1", "name":"NFT 1", "price":100, "image": "" },
-        { "id":"2", "name":"NFT 2", "price":200, "image": "" },
-        { "id":"3", "name":"NFT 3", "price":300, "image": "" },
-        { "id":"4", "name":"NFT 4", "price":400, "image": "" }
+        { "id":"1", "name":"ExBoot #1", "price":3.421, "authorName": "Istam", "image": "" },
+        { "id":"2", "name":"ExBoot #2", "price":5.2, "authorName": "Jamshed", "image": "" },
+        { "id":"3", "name":"Future of Polygon X", "price":1.2, "authorName": "Shoxa", "image": "" },
+        { "id":"4", "name":"Blue Wave #2", "price":1.55, "authorName": "Sardor", "image": "" }
     ]
 }
