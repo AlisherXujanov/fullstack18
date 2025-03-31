@@ -1,0 +1,8 @@
+{
+    "trending-nfts": [
+        { "id":"1", "name":"NFT 1", "price":100, "image": "" },
+        { "id":"2", "name":"NFT 2", "price":200, "image": "" },
+        { "id":"3", "name":"NFT 3", "price":300, "image": "" },
+        { "id":"4", "name":"NFT 4", "price":400, "image": "" }
+    ]
+}
