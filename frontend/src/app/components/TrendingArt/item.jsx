@@ -9,7 +9,7 @@ function Item(props) {
                 src={props.image}
                 alt="NFT thumbnail" 
             />
-            <span className="edit-nft-btn">
+            <span className="edit-nft-btn" onClick={props.updateNFT}>
                 <FiEdit />
             </span>
             <div className="nft-inner-info">

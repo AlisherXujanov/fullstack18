@@ -8,12 +8,13 @@ import { useState } from "react"
 
 
 function TrendingArt(props) {
-    const [form, setForm] = useState({
-        authorName: "",
-        nftName: "",
-        nftPrice: "",
-        image: ""
-    })
+    const [form, setForm] = useState({ authorName:"", nftName:"", nftPrice:"", image:"", id:"" })
+    const [updateMode, setUpdateMode] = useState(false)
+
+    function cleanUp() {
+        setForm({})
+        setUpdateMode(false)
+    }
 
     function handleFormChange(e) {
         const { name, value } = e.target
@@ -44,12 +45,23 @@ function TrendingArt(props) {
             image: ""
         })
     }
+    function handleUpdateMode(nft) {
+        setForm({
+            authorName: nft.authorName,
+            nftName: nft.name,
+            nftPrice: nft.price,
+            image: nft.image,
+            id: nft.id
+        })
+    }
+
     return (
         <div className="trending-art-wrapper">
             <div className="intro">
                 <h1>Trending Art 🔥</h1>
                 <p>
-                    <button className="create-nft-button" onClick={(e) => { props.handleShowModal(e, true) }}>
+                    <button className="create-nft-button"
+                        onClick={(e) => { props.handleShowModal(e, true); cleanUp() }}>
                         Create new NFT
                     </button>
                 </p>
@@ -57,6 +69,7 @@ function TrendingArt(props) {
                     props.showModal &&
                     <GlobalModal handleShowModal={props.handleShowModal}>
                         <form className="create-nft-form" onSubmit={submitForm}>
+                            <h1>{ updateMode ? "Update NFT" : "Create NFT" }</h1>
                             <div className="form-field">
                                 <label htmlFor="author-name">Author Name</label>
                                 <input
@@ -102,7 +115,9 @@ function TrendingArt(props) {
                                 />
                             </div>
                             <div className="form-field">
-                                <button type="submit">Create NFT</button>
+                                <button type="submit">
+                                    { updateMode ? "Update NFT" : "Create NFT" }
+                                </button>
                             </div>
                         </form>
                     </GlobalModal>
@@ -118,6 +133,7 @@ function TrendingArt(props) {
                             price={nft.price}
                             authorName={nft.authorName}
                             image={nft.image}
+                            updateNFT={(e) => { props.handleShowModal(e, true); handleUpdateMode(nft) }}
                         />
                     )
                 })}
