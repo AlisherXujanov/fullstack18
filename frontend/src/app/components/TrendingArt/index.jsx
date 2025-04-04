@@ -5,10 +5,12 @@ import TrendingNFTs from "../../../store/db.json"
 import Item from "./item"
 import GlobalModal from "../GlobalModal"
 import { useState } from "react"
+import { toast } from 'react-toastify';
+
 
 
 function TrendingArt(props) {
-    const [form, setForm] = useState({ authorName:"", nftName:"", nftPrice:"", image:"", id:"" })
+    const [form, setForm] = useState({ authorName: "", nftName: "", nftPrice: "", image: "", id: "" })
     const [updateMode, setUpdateMode] = useState(false)
 
     function cleanUp() {
@@ -25,25 +27,31 @@ function TrendingArt(props) {
     }
     async function submitForm(e) {
         e.preventDefault()
-        console.log("Form submitted: ", form)
 
+        const URL = "http://localhost:3001/trandingNfts"
         try {
-            const response = await fetch("http://localhost:3001/trandingNfts", {
-                method: "POST",
-                body: JSON.stringify(form),
+            const dataToSend = {
+                authorName: form.authorName,
+                name: form.nftName,
+                price: form.nftPrice,
+                image: form.image
+            }
+
+            const response = await fetch(updateMode ? URL + `/${form.id}` : URL, {
+                method: updateMode ? "PUT" : "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dataToSend),
             })
             console.log("Response: ", response)
+            toast.success(updateMode ? "NFT updated successfully" : "NFT created successfully", { theme: "dark" })
         }
         catch (e) {
-            console.log("Error: ", e)
+            toast.error("Ooops!...Error happened", { theme: "dark" })
         }
         props.handleShowModal(e, false)
-        setForm({
-            authorName: "",
-            nftName: "",
-            nftPrice: "",
-            image: ""
-        })
+        cleanUp()
     }
     function handleUpdateMode(nft) {
         setForm({
@@ -53,6 +61,7 @@ function TrendingArt(props) {
             image: nft.image,
             id: nft.id
         })
+        setUpdateMode(true)
     }
 
     return (
@@ -69,7 +78,7 @@ function TrendingArt(props) {
                     props.showModal &&
                     <GlobalModal handleShowModal={props.handleShowModal}>
                         <form className="create-nft-form" onSubmit={submitForm}>
-                            <h1>{ updateMode ? "Update NFT" : "Create NFT" }</h1>
+                            <h1>{updateMode ? "Update NFT" : "Create NFT"}</h1>
                             <div className="form-field">
                                 <label htmlFor="author-name">Author Name</label>
                                 <input
@@ -113,10 +122,20 @@ function TrendingArt(props) {
                                     value={form.image}
                                     onChange={handleFormChange}
                                 />
+                                {
+                                    form.image &&
+                                    <img
+                                        src={form.image}
+                                        alt="NFT"
+                                        width={100} height={100}
+                                        onClick={() => { setForm({ ...form, image: "" }) }}
+                                        style={{ borderRadius: '10px', cursor: 'pointer' }}
+                                    />
+                                }
                             </div>
                             <div className="form-field">
                                 <button type="submit">
-                                    { updateMode ? "Update NFT" : "Create NFT" }
+                                    {updateMode ? "Update NFT" : "Create NFT"}
                                 </button>
                             </div>
                         </form>

@@ -3,6 +3,7 @@
 import Wallet from "./components/Wallet"
 import TrendingArt from "./components/TrendingArt"
 import { useState } from "react"
+import { ToastContainer } from 'react-toastify';
 
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
   }
   return (
     <div className="home-page-wrapper">
+      <ToastContainer />
       <Wallet />
       <TrendingArt
         showModal={state.showModal}
