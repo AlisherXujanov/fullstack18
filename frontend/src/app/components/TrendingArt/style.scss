@@ -8,7 +8,8 @@
         margin-bottom: 20px;
         @include flex($justify: space-between);
     }
-    .create-nft-button{
+
+    .create-nft-button {
         background: $red-gradient;
         color: $light;
         border: none;
@@ -18,6 +19,7 @@
         font-size: 1.2em;
         cursor: pointer;
     }
+
     .create-nft-form {
         width: 100%;
 
@@ -51,13 +53,20 @@
 
 
     .nft-items-wrapper {
+        position: relative;
         @include grid(4, 20px);
+
+        * {
+            transition: all 0.3s ease;
+        }
 
         .nft-item-wrapper {
             width: 365px;
             background-color: $light;
             border-radius: 10px;
             padding: 10px;
+            position: relative;
+            overflow: hidden;
 
             img {
                 margin-bottom: 10px;
@@ -83,6 +92,39 @@
                             color: $dark-gray;
                         }
                     }
+                }
+            }
+
+            .edit-nft-btn {
+                position: absolute;
+                top: 40%;
+                left: 165px;
+                z-index: 10;
+                background-color: white;
+                cursor: pointer;
+                box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+                @include circle(50px);
+                @include flex();
+                display: none;
+
+                svg {
+                    fill: $red;
+                    color: $light;
+                    font-size: 1.5em;
+                }
+            }
+
+
+            &:hover {
+                box-shadow: 0 0 20px 5px lightgray;
+                background-color: white;
+
+                .edit-nft-btn {
+                    display: flex;
+                }
+
+                img {
+                    filter: blur(1px) brightness(0.6);
                 }
             }
         }
