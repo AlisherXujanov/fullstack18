@@ -8,7 +8,16 @@
         margin-bottom: 20px;
         @include flex($justify: space-between);
     }
-
+    .create-nft-button{
+        background: $red-gradient;
+        color: $light;
+        border: none;
+        padding: 10px 20px;
+        font-weight: 500;
+        border-radius: 15px;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
     .create-nft-form {
         width: 100%;
 

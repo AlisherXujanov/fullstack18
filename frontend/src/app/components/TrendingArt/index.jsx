@@ -49,7 +49,7 @@ function TrendingArt(props) {
             <div className="intro">
                 <h1>Trending Art 🔥</h1>
                 <p>
-                    <button onClick={(e) => { props.handleShowModal(e, true) }}>
+                    <button className="create-nft-button" onClick={(e) => { props.handleShowModal(e, true) }}>
                         Create new NFT
                     </button>
                 </p>
