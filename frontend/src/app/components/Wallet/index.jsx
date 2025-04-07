@@ -16,8 +16,8 @@ function Wallet() {
     return (
         <div className="connect-wallet-div">
             <div className="left">
-                <h5>WEB 3 NON-FUNGIBLE TOKENS</h5>
-                <h1>Unlock Unique Digital Ownership with NFTs</h1>
+                <h5 className="text-1">WEB 3 NON-FUNGIBLE TOKENS</h5>
+                <h1 className="big-text">Unlock Unique Digital Ownership with NFTs</h1>
                 <p>Experience the Revolutionary World of Non-Fungible Tokens on Our Exclusive NFT Marketplace</p>
                 <div className="button" onClick={() => { handleShowModal(true) }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-wallet2" viewBox="0 0 16 16">
