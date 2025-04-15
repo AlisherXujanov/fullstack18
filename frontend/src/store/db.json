@@ -56,5 +56,37 @@
       "price": "0.2",
       "image": "https://assets.staticimg.com/reaper-image/664493f7208b3f00013b798b_What%20Is%20Notcoin%20%28NOT%29-16-9.jpg"
     }
+  ],
+  "team": [
+    {
+      "id": 1,
+      "image": "Ellipse1.png",
+      "name": "Floyd Miles",
+      "position": "Founder"
+    },
+    {
+      "id": 2,
+      "image": "Ellipse2.png",
+      "name": "Eleanor Pena",
+      "position": "UI UX Designer"
+    },
+    {
+      "id": 3,
+      "image": "Ellipse3.png",
+      "name": "Kiss Dorka",
+      "position": "Ux Architect"
+    },
+    {
+      "id": 4,
+      "image": "Ellipse4.png",
+      "name": "Nagy Tímea",
+      "position": "Project Manage"
+    },
+    {
+      "id": 5,
+      "image": "Ellipse5.png",
+      "name": "William Loko",
+      "position": "Software Developer"
+    }
   ]
 }

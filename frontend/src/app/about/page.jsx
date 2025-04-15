@@ -1,5 +1,8 @@
+"use client"
+
 import "./style.scss"
 import Image from "next/image"
+import { useState } from "react"
 import AboutImg from "../../assets/images/about_image.png"
 import Astronot from "../../assets/images/ASTRONOT.png"
 import Rocket from "../../assets/images/rocket-nft.png"
@@ -16,8 +19,15 @@ import Logo6 from "../../assets/images/logoipsum6.png"
 import Logo7 from "../../assets/images/logoipsum7.png"
 import Logo8 from "../../assets/images/logoipsum8.png"
 import Logo9 from "../../assets/images/logoipsum9.png"
+import teamData from "../../store/db.json"
+import Ellipse1 from "../../assets/images/Ellipse1.png"
 
 function About() { 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
     return (
         <div className="about-page">
             <div className="about-page-wrapper">
@@ -33,7 +43,7 @@ function About() {
                     </p>
                 </div>
                 <div className="about-image">
-                    <Image src={AboutImg} alt=""></Image>
+                    <Image src={AboutImg} alt="" width={500} height={500}></Image>
                 </div>
             </div>
             <div className="about-content">
@@ -48,22 +58,22 @@ function About() {
             </div>
             <div className="about-icons">
                 <div className="about-rocket">
-                    <Image src={Rocket} alt=""></Image>
+                    <Image src={Rocket} alt="" width={100} height={100}></Image>
                     <h1>23.400</h1>
                     <p>NFT'S</p>
                 </div>
                 <div className="about-collections">
-                    <Image src={Collections} alt=""></Image>
+                    <Image src={Collections} alt="" width={100} height={100}></Image>
                     <h1>8.000</h1>
                     <p>Collections</p>
                 </div>
                 <div className="about-creators">
-                    <Image src={Creators} alt=""></Image>
+                    <Image src={Creators} alt="" width={100} height={100}></Image>
                     <h1>3,400</h1>
                     <p>Creators</p>
                 </div>
                 <div className="about-volurme">
-                    <Image src={Volurme} alt=""></Image>
+                    <Image src={Volurme} alt="" width={100} height={100}></Image>
                     <h1>$21B+</h1>
                     <p>Volurme</p>
                 </div>
@@ -71,7 +81,7 @@ function About() {
             <div className="about-nft-distro">
                 <h1>NFT Distro</h1>
                 <div className="nft-distro">
-                    <Image src={NftDistro} alt=""></Image>
+                    <Image src={NftDistro} alt="" width={500} height={500}></Image>
                 </div>
             </div>
             <div className="about-partners">
@@ -89,8 +99,39 @@ function About() {
                     <Image src={Logo9} alt=""></Image>
                 </div>
             </div>
+            <div className="about-nft-team">
+                <h1>Our Team</h1>
+                <div className="about-nft-team-image">
+                    {teamData.team.map((member) => (
+                        <div key={member.id} className={`team${member.id}`}>
+                            <Image src={Ellipse1} alt={member.name} width={180} height={170} />
+                            <h5>{member.name}</h5>
+                            <p className="about-nft-team-position">{member.position}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="about-nft-join">
+                <div className="about-nft-join-content">
+                    <h1>Interested in joining us?</h1>
+                    <p>We're always looking for passionate individuals to help us achieve our goals. Apply today and let's build a better future together.</p>
+                    <button className="about-nft-join-button" onClick={openModal}>Join Us</button>
+                </div>
+            </div>
+
+            {/* Модальное окно */}
+            {isModalOpen && (
+                <div className="about-modal active">
+                    <div className="modal-content">
+                        <span className="modal-close" onClick={closeModal}>×</span>
+                        <h2>Join Our Team!</h2>
+                        <p>We are always looking for passionate individuals to help us achieve our goals. Apply today and let's build a better future together!</p>
+                        <button type="submit">Apply Now</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
 
-export default About
+export default About;
