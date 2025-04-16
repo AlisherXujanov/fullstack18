@@ -143,17 +143,23 @@
                 }
             }
 
-            .edit-nft-btn {
+            .nft-actions {
                 position: absolute;
                 top: 40%;
-                left: 165px;
+                left: 50%;
+                transform: translateX(-50%);
                 z-index: 1;
+                display: none;
+                gap: 10px;
+            }
+
+            .edit-nft-btn,
+            .delete-nft-btn {
                 background-color: white;
                 cursor: pointer;
                 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
                 @include circle(50px);
                 @include flex();
-                display: none;
 
                 @media (max-width: 576px) {
                     left: 50%;
@@ -161,23 +167,125 @@
                 }
 
                 svg {
-                    fill: $red;
-                    color: $light;
                     font-size: 1.5em;
                 }
             }
 
+            .edit-nft-btn svg {
+                fill: $red;
+                color: $light;
+            }
+
+            .delete-nft-btn svg {
+                fill: #ff4444;
+                color: $light;
+            }
 
             &:hover {
                 box-shadow: 0 0 20px 5px lightgray;
                 background-color: white;
 
-                .edit-nft-btn {
+                .nft-actions {
                     display: flex;
                 }
 
                 img {
                     filter: blur(1px) brightness(0.6);
+                }
+            }
+        }
+    }
+}
+
+// Планшеты (768px - 1024px)
+@media screen and (max-width: 1024px) {
+    .trending-art-wrapper {
+        padding: 20px 50px;
+        
+        .nft-items-wrapper {
+            @include grid(3, 15px);
+            
+            .nft-item-wrapper {
+                width: 100%;
+                
+                img {
+                    height: 220px;
+                }
+                
+                .nft-inner-info {
+                    .details {
+                        .author {
+                            font-size: 1.1em;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .create-nft-button {
+            font-size: 1.1em;
+            padding: 8px 16px;
+        }
+    }
+}
+
+// Мобильные устройства (до 767px)
+@media screen and (max-width: 767px) {
+    .trending-art-wrapper {
+        padding: 15px 20px;
+        
+        .intro {
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .nft-items-wrapper {
+            @include grid(1, 15px);
+            
+            .nft-item-wrapper {
+                width: 100%;
+                
+                img {
+                    height: 200px;
+                }
+                
+                .nft-inner-info {
+                    .details {
+                        .author {
+                            font-size: 1em;
+                        }
+                        
+                        .price {
+                            font-size: 0.9em;
+                        }
+                    }
+                }
+                
+                .edit-nft-btn,
+                .delete-nft-btn {
+                    @include circle(40px);
+                    
+                    svg {
+                        font-size: 1.2em;
+                    }
+                }
+            }
+        }
+        
+        .create-nft-button {
+            width: 100%;
+            font-size: 1em;
+            padding: 10px 15px;
+        }
+        
+        .create-nft-form {
+            .form-field {
+                input,
+                button {
+                    font-size: 0.9em;
+                    padding: 8px 15px;
                 }
             }
         }

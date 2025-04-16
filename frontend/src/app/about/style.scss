@@ -1,10 +1,26 @@
 @use "../../assets/styles/globals" as *;
 @use "../../assets/styles/initial.scss" as *;
+
 .about-page-wrapper {
     @include grid(2);
     width: 60%;
     margin: 0 auto;
     align-items: center;
+    padding: 40px 0;
+    transition: all 0.3s ease;
+
+    img {
+        float: right;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+    }
+
 
     @media (max-width: 1200px) {
         width: 80%;
@@ -18,6 +34,7 @@
 
     img {
         float: right;
+
         @media (max-width: 768px) {
             float: none;
             margin: 20px auto;
@@ -28,21 +45,43 @@
         p {
             color: $dark-gray;
             font-family: dm sans;
+            line-height: 1.6;
+            transition: color 0.3s ease;
         }
+
 
         h1 {
             width: 350px;
             font-family: dm sans;
             margin-top: 5px;
-            @media (max-width: 768px) {
-                width: 100%;
-            }
+            background: linear-gradient(90deg, $dark, $dark-gray);
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+
         }
 
-        .about-page-description {
-            width: 400px;
-            margin-top: 20px;
-            color: $dark;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+
+    .about-page-description {
+        width: 400px;
+        margin-top: 20px;
+        color: $dark;
+        position: relative;
+        padding-left: 15px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, $dark, $dark-gray);
+            border-radius: 2px;
+
             @media (max-width: 768px) {
                 width: 100%;
             }
@@ -55,292 +94,615 @@
     width: 60%;
     margin: 0 auto;
     align-items: center;
-
-    @media (max-width: 1200px) {
-        width: 80%;
-    }
-
-    @media (max-width: 768px) {
-        @include grid(1);
-        width: 90%;
-        text-align: center;
-    }
+    padding: 40px 0;
 
     .about-nft-represent {
         padding-left: 100px;
         width: 60%;
 
-        @media (max-width: 768px) {
-            padding-left: 0;
-            width: 100%;
-        }
-
-        h1 {
-            font-family: dm sans;
-        }
-
-        p {
-            margin-top: 10px;
-            width: 400px;
-            font-family: dm sans;
-            @media (max-width: 768px) {
-                width: 100%;
-            }
-        }
-    }
-}
-
-.about-icons {
-    @include grid(4);
-    width: 70%;
-    margin: auto;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 1200px) {
-        width: 85%;
-    }
-
-    @media (max-width: 768px) {
-        @include grid(2);
-        width: 90%;
-        gap: 30px;
-    }
-
-    @media (max-width: 480px) {
-        @include grid(1);
-    }
-
-    p {
-        font-family: dm sans;
-    }
-
-    h1 {
-        font-family: dm sans;
-        font-size: 20px;
-        margin-top: 20px;
-    }
-
-    img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .about-rocket,
-    .about-collections,
-    .about-creators,
-    .about-volurme {
-        @include flex(column)
-    }
-}
-
-.about-nft-distro {
-    text-align: center;
-    margin-top: 100px;
-    background-color: $dark;
-    height: 50vh;
-    color: $white;
-
-    @media (max-width: 768px) {
-        height: auto;
-        padding: 50px 0;
-    }
-
-    h1 {
-        padding-top: 50px;
-        font-family: dm sans;
-    }
-
-    .nft-distro {
-        margin-top: 20px;
-
-        img {
-            width: auto;
-            max-width: 100%;
-            box-shadow: 0 5px 10px 0px black;
-            border-radius: 10px;
-        }
-    }
-}
-
-.about-partners {
-    margin-top: 400px;
-    text-align: center;
-    font-family: dm sans;
-    font-size: 1.5em;
-    margin-bottom: 30px;
-
-    @media (max-width: 768px) {
-        margin-top: 200px;
-    }
-
-    .about-partners-icon {
-        @include grid(5, 30px);
-        width: 65%;
-        margin: 40px auto;
 
         @media (max-width: 1200px) {
             width: 80%;
         }
 
         @media (max-width: 768px) {
-            @include grid(3, 20px);
+            @include grid(1);
             width: 90%;
+            text-align: center;
         }
 
-        @media (max-width: 480px) {
-            @include grid(2, 15px);
+        .about-nft-represent {
+            padding-left: 100px;
+            width: 60%;
+
+            @media (max-width: 768px) {
+                padding-left: 0;
+                width: 100%;
+            }
+
+            h1 {
+                font-family: dm sans;
+                background: linear-gradient(90deg, $dark, $dark-gray);
+                -webkit-text-fill-color: transparent;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+
+
+            p {
+                margin-top: 10px;
+                width: 400px;
+                font-family: dm sans;
+                line-height: 1.6;
+                transition: color 0.3s ease;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
+            }
         }
     }
-}
 
-.about-nft-team {
-    margin-top: 120px;
-    text-align: center;
-    font-family: dm sans;
-    font-size: 1.5em;
+    .about-icons {
+        @include grid(4);
+        width: 70%;
+        margin: auto;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 0;
 
-    @media (max-width: 768px) {
-        margin-top: 80px;
-    }
-
-    .about-nft-team-image {
-        @include grid(5);
-        width: 75%;
-        margin: 40px auto;
 
         @media (max-width: 1200px) {
             width: 85%;
         }
 
         @media (max-width: 768px) {
-            @include grid(3);
+            @include grid(2);
             width: 90%;
+            gap: 30px;
         }
 
         @media (max-width: 480px) {
-            @include grid(2);
-        }
-    }
-    .about-nft-team-position{
-        font-size: 15px;
-    }
-}
-.about-nft-join{
-    margin-top: 120px;
-    text-align: center;
-    font-family: dm sans;
-    background-color: $black;
-    color: $white;
-    width: 70%;
-    height: auto;
-    border-radius: 20px;
-    margin: 0 auto;
-    .about-nft-join-content{
-        padding-top: 50px;
-        h1{
-
-            font-size: 50px;
-        }
-        p{
-            padding: 15px;
-            width: 50%;
-            margin: 0 auto;
-        }
-        .about-nft-join-button{
-            background: $red-gradient;
-            color: $white;
-            font-family: "DM Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: bold;
-            font-size: 20px;
-            font-style: normal;
-            padding: 10px;
-            border-radius: 15px;
-            border: none;
-            width: 20%;
-            outline: none;
-            cursor: pointer;
-        }
-    }
-}
-
-.about-modal {
-    position: fixed;
-    text-align: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-
-    &.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .modal-content {
-        background-color: $white;
-        padding: 40px;
-        border-radius: 20px;
-        max-width: 600px;
-        width: 90%;
-        position: relative;
-        transform: translateY(-20px);
-        transition: transform 0.3s ease;
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: $dark;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: $red;
-            }
-        }
-
-        h2 {
-            font-family: dm sans;
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: $dark;
+            @include grid(1);
         }
 
         p {
             font-family: dm sans;
-            color: $dark-gray;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
- }
 
-            button[type="submit"] {
-                background: $red-gradient;
-                color: $white;
+
+        h1 {
+            font-family: dm sans;
+            font-size: 20px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+        }
+
+
+        .about-rocket,
+        .about-collections,
+        .about-creators,
+        .about-volurme {
+            @include flex(column);
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.03);
+                transform: translateY(-10px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+                img {
+                    transform: scale(1.1) rotate(5deg);
+                    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
+                }
+
+                h1 {
+                    color: $dark;
+                    transform: scale(1.05);
+                }
+
+                @include flex(column)
+            }
+        }
+
+        .about-nft-distro {
+            text-align: center;
+            margin-top: 100px;
+            background-color: $dark;
+            height: 50vh;
+            color: $white;
+
+            @media (max-width: 768px) {
+                height: auto;
+                padding: 50px 0;
+            }
+
+            h1 {
+                padding-top: 50px;
                 font-family: dm sans;
-                font-weight: bold;
-                font-size: 16px;
-                padding: 12px 24px;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.3s ease;
+            }
+
+            .nft-distro {
+                margin-top: 20px;
+
+                img {
+                    width: auto;
+                    max-width: 100%;
+                    box-shadow: 0 5px 10px 0px black;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        .about-nft-distro {
+            text-align: center;
+            margin-top: 100px;
+            background: linear-gradient(135deg, $dark, darken($dark, 10%));
+            height: auto;
+            min-height: 50vh;
+            color: $white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: visible;
+            padding-bottom: 50px;
+            position: relative;
+
+            h1 {
+                padding-top: 50px;
+                font-family: dm sans;
+                position: relative;
+                display: inline-block;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 50px;
+                    height: 3px;
+                    background: $white;
+                    border-radius: 3px;
+                }
+            }
+
+            .nft-distro {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    width: auto;
+                    max-width: 900px;
+                    height: auto;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                    border-radius: 15px;
+                    z-index: 1000;
+
+                }
+            }
+        }
+
+        .about-partners {
+            margin-top: 200px;
+            text-align: center;
+            font-family: dm sans;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+
+
+            @media (max-width: 768px) {
+                margin-top: 200px;
+            }
+
+            .about-partners-icon {
+                @include grid(5, 30px);
+                width: 65%;
+                margin: 40px auto;
+
+                img {
+                    transition: all 0.5s ease;
+                    filter: grayscale(100%);
+                    opacity: 0.7;
+
+                    &:hover {
+                        transform: scale(1.1);
+                        filter: grayscale(0%);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        // Медиа-запросы для адаптивной верстки
+        @media screen and (max-width: 1200px) {
+
+            .about-page-wrapper,
+            .about-content {
+                width: 80%;
+            }
+
+            .about-icons {
+                width: 85%;
+            }
+
+            .about-partners .about-partners-icon {
+                width: 80%;
+            }
+
+            .about-nft-distro {
+                .nft-distro {
+                    img {
+                        max-width: 700px;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+
+            .about-page-wrapper,
+            .about-content {
+                width: 90%;
+            }
+
+            .about-page-content {
+                h1 {
+                    width: 100%;
+                }
+
+                .about-page-description {
+                    width: 100%;
+                }
+            }
+
+            .about-nft-represent {
+                p {
+                    width: 100%;
+                }
+            }
+
+            .about-nft-distro {
+                height: auto;
+                min-height: 40vh;
+
+                .nft-distro {
+                    img {
+                        position: relative;
+                        top: 0;
+                        transform: translateY(0);
+                        max-width: 500px;
+                        margin-top: 30px;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .about-page-wrapper,
+            .about-content {
+                @include grid(1);
+                width: 90%;
+                text-align: center;
+
+                img {
+                    float: none;
+                    margin: 20px auto;
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                .about-page-content {
+
+                    h1,
+                    .about-page-description {
+                        width: 100%;
+                        margin: 10px auto;
+                    }
+                }
+
+                .about-nft-represent {
+                    padding-left: 0;
+                    width: 100%;
+
+                    p {
+                        width: 100%;
+                        margin: 10px auto;
+                    }
+                }
+            }
+
+            .about-icons {
+                @include grid(2);
+                width: 90%;
+                gap: 30px;
+
+                .about-rocket,
+                .about-collections,
+                .about-creators,
+                .about-volurme {
+                    text-align: center;
+                }
+            }
+
+            .about-nft-distro {
+                height: auto;
+                min-height: 35vh;
+                padding: 30px 0;
+
+                .nft-distro {
+                    img {
+                        max-width: 400px;
+                    }
+                }
+            }
+
+            .about-partners {
+                margin-top: 100px;
+
+                .about-partners-icon {
+                    @include grid(3);
+                    width: 90%;
+                }
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+
+            .about-page-wrapper,
+            .about-content {
+                width: 95%;
+                padding: 0 10px;
+            }
+
+            .about-page-content {
+                h1 {
+                    font-size: 24px;
+                }
+
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .about-icons {
+                @include grid(1);
+                width: 95%;
+                gap: 20px;
+
+                h1 {
+                    font-size: 18px;
+                }
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            .about-nft-distro {
+                margin-top: 50px;
+                padding: 20px 0;
+                min-height: 30vh;
+
+                h1 {
+                    font-size: 24px;
+                    padding-top: 30px;
+                }
+
+                .nft-distro {
+                    padding: 0 10px;
+
+                    img {
+                        max-width: 300px;
+                    }
+                }
+            }
+
+            .about-partners {
+                margin-top: 50px;
+                font-size: 1.2em;
+
+                .about-partners-icon {
+                    @include grid(2);
+                    width: 95%;
+                    gap: 20px;
+
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+
+                    @media (max-width: 1200px) {
+                        width: 80%;
+                    }
+
+                    @media (max-width: 768px) {
+                        @include grid(3, 20px);
+                        width: 90%;
+                    }
+
+                    @media (max-width: 480px) {
+                        @include grid(2, 15px);
+                    }
+                }
+            }
+
+            .about-nft-team {
+                margin-top: 120px;
+                text-align: center;
+                font-family: dm sans;
+                font-size: 1.5em;
+
+                @media (max-width: 768px) {
+                    margin-top: 80px;
+                }
+
+                .about-nft-team-image {
+                    @include grid(5);
+                    width: 75%;
+                    margin: 40px auto;
+
+                    @media (max-width: 1200px) {
+                        width: 85%;
+                    }
+
+                    @media (max-width: 768px) {
+                        @include grid(3);
+                        width: 90%;
+                    }
+
+                    @media (max-width: 480px) {
+                        @include grid(2);
+                    }
+                }
+
+                .about-nft-team-position {
+                    font-size: 15px;
+                }
+            }
+
+            .about-nft-join {
+                margin-top: 120px;
+                text-align: center;
+                font-family: dm sans;
+                background-color: $black;
+                color: $white;
+                width: 70%;
+                height: auto;
+                border-radius: 20px;
+                margin: 0 auto;
+
+                .about-nft-join-content {
+                    padding-top: 50px;
+
+                    h1 {
+
+                        font-size: 50px;
+                    }
+
+                    p {
+                        padding: 15px;
+                        width: 50%;
+                        margin: 0 auto;
+                    }
+
+                    .about-nft-join-button {
+                        background: $red-gradient;
+                        color: $white;
+                        font-family: "DM Sans", sans-serif;
+                        font-optical-sizing: auto;
+                        font-weight: bold;
+                        font-size: 20px;
+                        font-style: normal;
+                        padding: 10px;
+                        border-radius: 15px;
+                        border: none;
+                        width: 20%;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .about-modal {
+                position: fixed;
+                text-align: center;
+                top: 0;
+                left: 0;
                 width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                .modal-content {
+                    background-color: $white;
+                    padding: 40px;
+                    border-radius: 20px;
+                    max-width: 600px;
+                    width: 90%;
+                    position: relative;
+                    transform: translateY(-20px);
+                    transition: transform 0.3s ease;
+
+                    .modal-close {
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        color: $dark;
+                        transition: color 0.3s ease;
+
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+
+                    h2 {
+                        font-family: dm sans;
+                        font-size: 32px;
+                        margin-bottom: 20px;
+                        color: $dark;
+                    }
+
+                    p {
+                        font-family: dm sans;
+                        color: $dark-gray;
+                        line-height: 1.6;
+                        margin-bottom: 20px;
+                    }
+                }
+
+                button[type="submit"] {
+                    background: $red-gradient;
+                    color: $white;
+                    font-family: dm sans;
+                    font-weight: bold;
+                    font-size: 16px;
+                    padding: 12px 24px;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    width: 100%;
 
                     &:hover {
                         transform: translateY(-2px);
                         box-shadow: 0 5px 15px rgba($red, 0.3);
                     }
                 }
+
+            }
+        }
     }
+}
