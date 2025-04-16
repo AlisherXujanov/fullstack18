@@ -1,29 +1,237 @@
 .faq-page-wrapper {
-    width: 1350px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
 
-    .box {
-        padding: 20px;
-        text-align: left;
-        background-color: #333;
-        border-radius: 10px;
-        color: white;
+    .faq-content {
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
 
-        input {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            padding: 10px 20px;
-            margin: 10px 0;
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
 
-            &[type="color"] {
-                width: 50px;
-                height: 50px;
-                padding: 0;
+        .search-bar {
+            margin-bottom: 2rem;
+
+            input {
+                width: 100%;
+                padding: 12px 20px;
+                border: 1px solid #eee;
+                border-radius: 8px;
+                font-size: 1rem;
+                outline: none;
+
+                &:focus {
+                    border-color: #ff69b4;
+                }
             }
         }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #eee;
+            }
+
+            button {
+                padding: 8px 20px;
+                border: none;
+                background: none;
+                cursor: pointer;
+                border-radius: 20px;
+                font-size: 1rem;
+                color: #666;
+                margin-left: 100px;
+                position: relative;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: #ff69b4;
+                    border-radius: 20px;
+                    transform: scaleX(0);
+                    transform-origin: left;
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    z-index: -1;
+                }
+
+                &.active {
+                    color: white;
+                    transform: translateY(-2px);
+
+                    &::before {
+                        transform: scaleX(1);
+                    }
+                }
+
+                &:hover:not(.active) {
+                    background-color: #eee;
+                    transform: translateY(-2px);
+                    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .faq-items {
+            .faq-item {
+                border-bottom: 1px solid #eee;
+                padding: 5px 20px;
+                margin-bottom: 1rem;
+                background-color: whitesmoke;
+                border-radius: 30px;
+                border: none;
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.5s ease forwards;
+
+                @for $i from 1 through 10 {
+                    &:nth-child(#{$i}) {
+                        animation-delay: #{$i * 0.1}s;
+                    }
+                }
+
+                .question {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+                    padding: 1rem 0;
+                    border-bottom: 1px solid #eee;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        padding-left: 20px;
+                    }
+
+                    h3 {
+                        margin: 0;
+                        font-size: 1.1rem;
+                        color: #333;
+                    }
+
+                    .toggle {
+                        color: #666;
+                        transition: transform 0.3s ease;
+
+                        svg {
+                            transition: transform 0.3s ease;
+                        }
+                    }
+                }
+
+                .answer {
+                    max-height: 0;
+                    opacity: 0;
+                    overflow: hidden;
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    transform: translateY(-20px);
+                    padding: 0 10px;
+                    color: #666;
+                    line-height: 1.6;
+                    position: relative;
+                    animation: closeAnswer 0.5s ease-out forwards;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+                        transform: translateX(-100%);
+                    }
+                }
+
+                &:has(.answer:not(:empty)) {
+
+                    .answer {
+                        max-height: 1000px;
+                        opacity: 1;
+                        transform: translateY(0);
+                        margin: 1rem 0;
+                        animation: openAnswer 0.8s ease-out forwards;
+
+                        &::before {
+                            animation: shimmer 1.5s ease-out forwards;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Add new animations
+@keyframes openAnswer {
+    0% {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        max-height: 1000px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes closeAnswer {
+    0% {
+        max-height: 1000px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
     }
 }
