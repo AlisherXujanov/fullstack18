@@ -2,33 +2,58 @@
 
 import "./style.scss"
 import Image from "next/image"
+import Link from "next/link"
+import { useState, useEffect } from "react"
 import Logo from "../../../assets/icons/logo.png"
-import { useState } from "react"
 
-function Footer() {
+const Footer = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
+    useEffect(() => {
+        // Проверяем сохраненную тему при загрузке
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            setIsDarkMode(true);
+            document.body.classList.add('dark-theme');
+        }
+    }, []);
+
     const handleThemeChange = () => {
-        setIsDarkMode(!isDarkMode);
+        const newTheme = !isDarkMode;
+        setIsDarkMode(newTheme);
         
+        if (newTheme) {
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
     };
 
     return (
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-left">
-                    <div className="logo">
-                        <Image src={Logo} alt="NFT Distro" width={110} height={40} />
-                    </div>
+                    <Link href="/" className="logo">
+                        <Image
+                            src={Logo}
+                            alt="NFT Distro Logo"
+                            width={130}
+                            height={40}
+                            priority
+                        />
+                    </Link>
                     <p className="description">
-                        Experience the Revolutionary World of Non-Fungible Tokens on Our Exclusive NFT Marketplace
+                        NFT Distro - это инновационная платформа для создания, продажи и управления NFT. Мы предоставляем уникальные инструменты для художников, коллекционеров и инвесторов в мире цифрового искусства.
                     </p>
                     <div className="theme-switcher">
-                        <input 
-                            className="switch" 
-                            type="checkbox" 
+                        <input
+                            type="checkbox"
+                            className="switch"
                             checked={isDarkMode}
                             onChange={handleThemeChange}
+                            aria-label="Переключить темную тему"
                         />
                     </div>
                 </div>
