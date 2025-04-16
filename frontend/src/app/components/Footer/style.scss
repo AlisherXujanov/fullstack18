@@ -2,9 +2,8 @@
 
 
 .footer {
+    background: linear-gradient(180deg, $light 0%, $light-gray 100%);
     padding: 60px 0 30px;
-    background: white;
-    font-family: sans-serif;
     position: relative;
     overflow: hidden;
 
@@ -15,7 +14,7 @@
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(90deg, $red, $dark);
+        background: $red-gradient;
         opacity: 0.7;
     }
 
@@ -27,13 +26,21 @@
         justify-content: space-between;
         gap: 40px;
 
+        @media (max-width: 992px) {
+            flex-direction: column;
+        }
+
         .footer-left {
             max-width: 320px;
 
             .logo {
+                display: block;
                 margin-bottom: 20px;
                 transition: transform 0.3s ease;
 
+                &:hover {
+                    transform: scale(1.05);
+                }
             }
 
             .description {
@@ -41,76 +48,53 @@
                 font-size: 14px;
                 line-height: 1.6;
                 margin-bottom: 24px;
-                position: relative;
-                padding-left: 15px;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    height: 100%;
-                    width: 3px;
-                    background: $red;
-                    border-radius: 3px;
-                }
             }
 
             .theme-switcher {
-                display: flex;
-                align-items: center;
-                margin-top: 10px;
-            }
+                margin-top: 20px;
 
-            .switch {
-                position: relative;
-                height: 1.5rem;
-                width: 3rem;
-                cursor: pointer;
-                appearance: none;
-                -webkit-appearance: none;
-                border-radius: 9999px;
-                background-color: rgba(100, 116, 139, 0.377);
-                transition: all .3s ease;
-            }
+                .switch {
+                    position: relative;
+                    height: 26px;
+                    width: 50px;
+                    cursor: pointer;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    border-radius: 13px;
+                    background-color: $dark-gray;
+                    transition: all 0.3s ease;
 
-            .switch:checked {
-                background-color: rgba(236, 72, 153, 1);
-            }
+                    &:checked {
+                        background-color: $red;
 
-            .switch::before {
-                position: absolute;
-                content: "";
-                left: calc(1.5rem - 1.6rem);
-                top: calc(1.5rem - 1.6rem);
-                display: block;
-                height: 1.6rem;
-                width: 1.6rem;
-                cursor: pointer;
-                border: 1px solid rgba(100, 116, 139, 0.527);
-                border-radius: 9999px;
-                background-color: rgba(255, 255, 255, 1);
-                box-shadow: 0 3px 10px rgba(100, 116, 139, 0.327);
-                transition: all .3s ease;
-            }
+                        &::before {
+                            transform: translateX(24px);
+                        }
+                    }
 
-            .switch:hover::before {
-                box-shadow: 0 0 0px 8px rgba(0, 0, 0, .15)
-            }
-
-            .switch:checked:hover::before {
-                box-shadow: 0 0 0px 8px rgba(236, 72, 153, .15)
-            }
-
-            .switch:checked::before {
-                transform: translateX(100%);
-                border-color: rgba(236, 72, 153, 1);
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 22px;
+                        height: 22px;
+                        border-radius: 50%;
+                        background-color: $white;
+                        top: 2px;
+                        left: 2px;
+                        transition: transform 0.3s ease;
+                    }
+                }
             }
         }
 
         .footer-links {
             display: flex;
             gap: 80px;
+
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
 
             .link-group {
                 h3 {
@@ -139,39 +123,19 @@
                 ul {
                     list-style: none;
                     padding: 0;
+                    margin: 0;
 
                     li {
-                        margin-bottom: 10px;
-                        position: relative;
-                        padding-left: 0;
-                        transition: padding-left 0.3s ease;
-
-                        &:hover {
-                            padding-left: 10px;
-                        }
+                        margin-bottom: 12px;
 
                         a {
                             color: $text-color;
                             text-decoration: none;
+                            transition: color 0.3s ease;
                             font-size: 14px;
-                            transition: all 0.3s ease;
-                            position: relative;
-
-                            &::before {
-                                content: '→';
-                                position: absolute;
-                                left: -20px;
-                                opacity: 0;
-                                transition: all 0.3s ease;
-                            }
 
                             &:hover {
                                 color: $red;
-
-                                &::before {
-                                    left: -15px;
-                                    opacity: 1;
-                                }
                             }
                         }
                     }
@@ -183,23 +147,6 @@
                     color: $dark;
                     font-size: 18px;
                     margin-bottom: 20px;
-                    position: relative;
-                    display: inline-block;
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        bottom: -5px;
-                        left: 0;
-                        width: 40px;
-                        height: 2px;
-                        background: $red;
-                        transition: width 0.3s ease;
-                    }
-
-                    &:hover::after {
-                        width: 100%;
-                    }
                 }
 
                 .email-input {
@@ -207,13 +154,12 @@
 
                     input {
                         width: 300px;
-                        padding: 10px 15px;
-                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        padding: 12px 15px;
+                        border: 1px solid $dark-gray;
                         border-radius: 5px;
                         font-size: 14px;
                         outline: none;
                         transition: all 0.3s ease;
-                        padding-right: 40px;
 
                         &:focus {
                             border-color: $red;
@@ -221,25 +167,8 @@
                         }
 
                         &::placeholder {
-                            color: rgba($text-color, 0.6);
+                            color: $dark-gray;
                         }
-                    }
-
-                    &::after {
-                        content: '→';
-                        position: absolute;
-                        right: 15px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        color: $red;
-                        font-weight: bold;
-                        opacity: 0.7;
-                        transition: all 0.3s ease;
-                    }
-
-                    &:hover::after {
-                        opacity: 1;
-                        right: 10px;
                     }
                 }
             }
@@ -250,45 +179,40 @@
         max-width: 1200px;
         margin: 50px auto 0;
         padding: 30px 20px 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid $dark-gray;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
         .copyright {
             color: $text-color;
             font-size: 14px;
-            position: relative;
-
-            &::before {
-                content: '©';
-                margin-right: 5px;
-                color: $red;
-            }
         }
 
         .social-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
 
             .social-link {
-                color: $dark;
-                text-decoration: none;
-                font-size: 18px;
-                opacity: 0.7;
-                transition: all 0.3s ease;
-                width: 35px;
-                height: 35px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
-                background: rgba($dark, 0.05);
+                background-color: $light-gray;
+                color: $text-color;
+                transition: all 0.3s ease;
 
                 &:hover {
-                    opacity: 1;
-                    background: $red;
-                    color: white;
+                    background-color: $red;
+                    color: $white;
                     transform: translateY(-3px);
                 }
             }
@@ -299,64 +223,77 @@
 // Стили для темной темы
 body.dark-theme {
     .footer {
-        background: #1a1a1a;
-        color: #f5f5f5;
-        
-        &::before {
-            opacity: 0.5;
-        }
-        
+        background: linear-gradient(180deg, $dark 0%, lighten($dark, 5%) 100%);
+
         .footer-left {
             .description {
-                color: #e0e0e0;
+                color: $dark-gray;
+            }
+
+            .theme-switcher .switch {
+                background-color: lighten($dark, 10%);
+
+                &:checked {
+                    background-color: $red;
+                }
             }
         }
-        
+
         .footer-links {
             .link-group {
                 h3 {
-                    color: #f5f5f5;
+                    color: $white;
+
+                    &::after {
+                        background: $red;
+                    }
                 }
-                
+
                 ul li a {
-                    color: #e0e0e0;
-                    
+                    color: $dark-gray;
+
                     &:hover {
                         color: $red;
                     }
                 }
             }
-            
+
             .join-community {
                 h3 {
-                    color: #f5f5f5;
+                    color: $white;
                 }
-                
+
                 .email-input input {
-                    background: #2a2a2a;
-                    border-color: rgba(255, 255, 255, 0.1);
-                    color: #f5f5f5;
-                    
+                    background-color: lighten($dark, 10%);
+                    border-color: $dark-gray;
+                    color: $white;
+
                     &::placeholder {
-                        color: rgba(255, 255, 255, 0.5);
+                        color: $dark-gray;
+                    }
+
+                    &:focus {
+                        border-color: $red;
+                        box-shadow: 0 0 0 3px rgba($red, 0.1);
                     }
                 }
             }
         }
-        
+
         .footer-bottom {
-            border-top-color: rgba(255, 255, 255, 0.1);
-            
+            border-top-color: $dark-gray;
+
             .copyright {
-                color: #e0e0e0;
+                color: $dark-gray;
             }
-            
+
             .social-links .social-link {
-                color: #f5f5f5;
-                background: rgba(255, 255, 255, 0.1);
-                
+                background-color: lighten($dark, 10%);
+                color: $dark-gray;
+
                 &:hover {
-                    background: $red;
+                    background-color: $red;
+                    color: $white;
                 }
             }
         }

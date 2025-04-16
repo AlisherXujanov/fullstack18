@@ -29,10 +29,11 @@ function About() {
     const closeModal = () => setIsModalOpen(false);
 
     return (
-        <div className="about-page">
-            <div className="about-page-wrapper">
+        <main className="about-page">
+            {/* Hero Section */}
+            <section className="about-page-wrapper">
                 <div className="about-page-content">
-                    <p>NFT MARKETPLACE</p>
+                    <span className="section-label">NFT MARKETPLACE</span>
                     <h1>About our Company NFT Distro</h1>
                     <p className="about-page-description">
                         We are a cutting-edge company focused on the creation,
@@ -43,94 +44,105 @@ function About() {
                     </p>
                 </div>
                 <div className="about-image">
-                    <Image src={AboutImg} alt="" width={500} height={500}></Image>
+                    <Image src={AboutImg} alt="NFT Distro company illustration" width={500} height={500} priority />
                 </div>
-            </div>
-            <div className="about-content">
+            </section>
+
+            {/* NFT Future Section */}
+            <section className="about-content">
                 <div className="about-content-image">
-                    <Image src={Astronot} alt="" width={500} height={500}></Image>
+                    <Image src={Astronot} alt="Astronaut NFT illustration" width={500} height={500} />
                 </div>
                 <div className="about-nft-represent">
-                    <h1>NFT Represent
-                        the future</h1>
+                    <h2>NFT Represent the future</h2>
                     <p>We believe that NFTs represent the future of digital ownership and are excited to provide our customers with access to this revolutionary new market. Our platform is user-friendly and easy to navigate, making it simple for creators to upload and sell their NFTs and for buyers to discover and purchase unique digital assets.</p>
                 </div>
-            </div>
-            <div className="about-icons">
+            </section>
+
+            {/* Statistics Section */}
+            <section className="about-icons">
                 <div className="about-rocket">
-                    <Image src={Rocket} alt="" width={100} height={100}></Image>
-                    <h1>23.400</h1>
+                    <Image src={Rocket} alt="Rocket icon" width={100} height={100} />
+                    <h3>23.400</h3>
                     <p>NFT'S</p>
                 </div>
                 <div className="about-collections">
-                    <Image src={Collections} alt="" width={100} height={100}></Image>
-                    <h1>8.000</h1>
+                    <Image src={Collections} alt="Collections icon" width={100} height={100} />
+                    <h3>8.000</h3>
                     <p>Collections</p>
                 </div>
                 <div className="about-creators">
-                    <Image src={Creators} alt="" width={100} height={100}></Image>
-                    <h1>3,400</h1>
+                    <Image src={Creators} alt="Creators icon" width={100} height={100} />
+                    <h3>3,400</h3>
                     <p>Creators</p>
                 </div>
                 <div className="about-volurme">
-                    <Image src={Volurme} alt="" width={100} height={100}></Image>
-                    <h1>$21B+</h1>
-                    <p>Volurme</p>
+                    <Image src={Volurme} alt="Volume icon" width={100} height={100} />
+                    <h3>$21B+</h3>
+                    <p>Volume</p>
                 </div>
-            </div>
-            <div className="about-nft-distro">
-                <h1>NFT Distro</h1>
+            </section>
+
+            {/* NFT Distro Section */}
+            <section className="about-nft-distro">
+                <h2>NFT Distro</h2>
                 <div className="nft-distro">
-                    <Image src={NftDistro} alt="" width={500} height={500}></Image>
+                    <Image src={NftDistro} alt="NFT Distro platform illustration" width={500} height={500} />
                 </div>
-            </div>
-            <div className="about-partners">
-                <h1>Our Partners</h1>
+            </section>
+
+            {/* Partners Section */}
+            <section className="about-partners">
+                <h2>Our Partners</h2>
                 <div className="about-partners-icon">
-                    <Image src={Logo1} alt=""></Image>
-                    <Image src={Logo2} alt=""></Image>
-                    <Image src={Logo3} alt=""></Image>
-                    <Image src={Logo4} alt=""></Image>
-                    <Image src={Logo5} alt=""></Image>
-                    <Image src={Logo6} alt=""></Image>
-                    <Image src={Logo1} alt=""></Image>
-                    <Image src={Logo7} alt=""></Image>
-                    <Image src={Logo8} alt=""></Image>
-                    <Image src={Logo9} alt=""></Image>
+                    <Image src={Logo1} alt="Partner logo 1" width={120} height={40} />
+                    <Image src={Logo2} alt="Partner logo 2" width={120} height={40} />
+                    <Image src={Logo3} alt="Partner logo 3" width={120} height={40} />
+                    <Image src={Logo4} alt="Partner logo 4" width={120} height={40} />
+                    <Image src={Logo5} alt="Partner logo 5" width={120} height={40} />
+                    <Image src={Logo6} alt="Partner logo 6" width={120} height={40} />
+                    <Image src={Logo1} alt="Partner logo 7" width={120} height={40} />
+                    <Image src={Logo7} alt="Partner logo 8" width={120} height={40} />
+                    <Image src={Logo8} alt="Partner logo 9" width={120} height={40} />
+                    <Image src={Logo9} alt="Partner logo 10" width={120} height={40} />
                 </div>
-            </div>
-            <div className="about-nft-team">
-                <h1>Our Team</h1>
+            </section>
+
+            {/* Team Section */}
+            <section className="about-nft-team">
+                <h2>Our Team</h2>
                 <div className="about-nft-team-image">
                     {teamData.team.map((member) => (
                         <div key={member.id} className={`team${member.id}`}>
                             <Image src={Ellipse1} alt={member.name} width={180} height={170} />
-                            <h5>{member.name}</h5>
+                            <h3>{member.name}</h3>
                             <p className="about-nft-team-position">{member.position}</p>
                         </div>
                     ))}
                 </div>
-            </div>
-            <div className="about-nft-join">
-                <div className="about-nft-join-content">
-                    <h1>Interested in joining us?</h1>
-                    <p>We're always looking for passionate individuals to help us achieve our goals. Apply today and let's build a better future together.</p>
-                    <button className="about-nft-join-button" onClick={openModal}>Join Us</button>
-                </div>
-            </div>
+            </section>
 
-            {/* Модальное окно */}
+            {/* Join Us Section */}
+            <section className="about-nft-join">
+                <div className="about-nft-join-content">
+                    <h2>Interested in joining us?</h2>
+                    <p>We're always looking for passionate individuals to help us achieve our goals. Apply today and let's build a better future together.</p>
+                    <button className="about-nft-join-button" onClick={openModal} aria-label="Open join us form">Join Us</button>
+                </div>
+            </section>
+
+            {/* Modal */}
             {isModalOpen && (
-                <div className="about-modal active">
+                <div className="about-modal active" role="dialog" aria-modal="true" aria-labelledby="modal-title">
                     <div className="modal-content">
-                        <span className="modal-close" onClick={closeModal}>×</span>
-                        <h2>Join Our Team!</h2>
+                        <button className="modal-close" onClick={closeModal} aria-label="Close modal">×</button>
+                        <h2 id="modal-title">Join Our Team!</h2>
                         <p>We are always looking for passionate individuals to help us achieve our goals. Apply today and let's build a better future together!</p>
-                        <button type="submit">Apply Now</button>
+                        <button type="submit" className="modal-submit">Apply Now</button>
                     </div>
                 </div>
             )}
-        </div>
+        </main>
     );
 }
 
