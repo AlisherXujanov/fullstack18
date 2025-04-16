@@ -10,8 +10,7 @@ function FAQ() {
 
             <Heading>FAQ</Heading>
 
-    
     )
 }
 
-export default FAQ
+export default FAQ;

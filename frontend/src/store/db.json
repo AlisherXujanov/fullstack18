@@ -42,5 +42,37 @@
       "price": "232",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJrjSpbZqlb1BtVhZRSiIgWJFAoqP-STFjg&s"
     }
+  ],
+  "team": [
+    {
+      "id": 1,
+      "image": "Ellipse1.png",
+      "name": "Floyd Miles",
+      "position": "Founder"
+    },
+    {
+      "id": 2,
+      "image": "Ellipse2.png",
+      "name": "Eleanor Pena",
+      "position": "UI UX Designer"
+    },
+    {
+      "id": 3,
+      "image": "Ellipse3.png",
+      "name": "Kiss Dorka",
+      "position": "Ux Architect"
+    },
+    {
+      "id": 4,
+      "image": "Ellipse4.png",
+      "name": "Nagy Tímea",
+      "position": "Project Manage"
+    },
+    {
+      "id": 5,
+      "image": "Ellipse5.png",
+      "name": "William Loko",
+      "position": "Software Developer"
+    }
   ]
 }

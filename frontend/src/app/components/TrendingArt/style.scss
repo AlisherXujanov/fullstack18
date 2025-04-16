@@ -4,9 +4,26 @@
 .trending-art-wrapper {
     padding: 20px 150px;
 
+    @media (max-width: 1200px) {
+        padding: 20px 100px;
+    }
+
+    @media (max-width: 992px) {
+        padding: 20px 50px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 20px 20px;
+    }
+
     .intro {
         margin-bottom: 20px;
         @include flex($justify: space-between);
+
+        @media (max-width: 576px) {
+            flex-direction: column;
+            gap: 20px;
+        }
     }
 
     .create-nft-button {
@@ -18,6 +35,10 @@
         border-radius: 15px;
         font-size: 1.2em;
         cursor: pointer;
+
+        @media (max-width: 576px) {
+            width: 100%;
+        }
     }
 
     .create-nft-form {
@@ -56,22 +77,40 @@
         position: relative;
         @include grid(4, 20px);
 
+        @media (max-width: 1200px) {
+            @include grid(3, 20px);
+        }
+
+        @media (max-width: 992px) {
+            @include grid(2, 20px);
+        }
+
+        @media (max-width: 576px) {
+            @include grid(1, 20px);
+        }
+
         * {
             transition: all 0.3s ease;
         }
 
         .nft-item-wrapper {
             width: 365px;
+            max-width: 100%;
             background-color: $light;
             border-radius: 10px;
             padding: 10px;
             position: relative;
             overflow: hidden;
 
+            @media (max-width: 576px) {
+                width: 100%;
+            }
+
             img {
                 margin-bottom: 10px;
                 width: 100%;
                 height: 250px;
+                object-fit: cover;
             }
 
             .nft-inner-info {
@@ -81,12 +120,21 @@
                     @include grid(2);
                     align-items: center;
 
+                    @media (max-width: 576px) {
+                        @include grid(1);
+                        gap: 10px;
+                    }
+
                     .author {
                         font-size: large;
                     }
 
                     .price {
                         text-align: right;
+
+                        @media (max-width: 576px) {
+                            text-align: left;
+                        }
 
                         .text-muted {
                             color: $dark-gray;
@@ -112,6 +160,11 @@
                 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
                 @include circle(50px);
                 @include flex();
+
+                @media (max-width: 576px) {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
 
                 svg {
                     font-size: 1.5em;

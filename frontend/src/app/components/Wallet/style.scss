@@ -5,6 +5,19 @@
     padding: 20px 150px;
     @include grid(2, 20px);
 
+    @media (max-width: 1200px) {
+        padding: 20px 100px;
+    }
+
+    @media (max-width: 992px) {
+        padding: 20px 50px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 20px 30px;
+        @include grid(1, 20px);
+    }
+
     .left {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
@@ -16,6 +29,10 @@
             color: $text-color;
             margin-top: 20px;
             margin-bottom: 30px;
+
+            @media (max-width: 768px) {
+                font-size: 0.9em;
+            }
         }
 
         .text-1 {
@@ -23,6 +40,10 @@
             font-weight: bold;
             color: $text-color;
             font-size: 1.1em;
+
+            @media (max-width: 768px) {
+                font-size: 1em;
+            }
         }
 
         h1.big-text {
@@ -30,6 +51,16 @@
             font-style: normal;
             font-size: 3em;
             line-height: 70px;
+
+            @media (max-width: 1200px) {
+                font-size: 2.5em;
+                line-height: 60px;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 2em;
+                line-height: 50px;
+            }
         }
 
         .button {
@@ -46,6 +77,11 @@
             max-width: 500px;
             cursor: pointer;
             transition: 0.3s ease;
+
+            @media (max-width: 768px) {
+                width: 100%;
+                max-width: 100%;
+            }
 
             &:hover {
                 padding: 19px 25px;
