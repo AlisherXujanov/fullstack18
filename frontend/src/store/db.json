@@ -1,60 +1,46 @@
 {
   "trandingNfts": [
     {
-      "id": "1",
-      "name": "ExBoot #1",
-      "price": 3.421,
-      "authorName": "Istam",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdXMwhlcWuAgzLW229AV5goc5hcfuQyBxzmQ&s"
-    },
-    {
-      "authorName": "Jamshed (UPDATED)",
-      "name": "Hello world",
-      "price": "10.5",
-      "image": "https://bitcoinworld.co.in/wp-content/uploads/2021/10/photo-1621932802533-e7894a493640.jpeg",
-      "id": "2"
-    },
-    {
-      "id": "3",
-      "name": "Future of Polygon X",
-      "price": 1.2,
-      "authorName": "Shoxa",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdXMwhlcWuAgzLW229AV5goc5hcfuQyBxzmQ&s"
-    },
-    {
-      "id": "4",
-      "name": "Blue Wave #2",
-      "price": 1.55,
-      "authorName": "Sardor",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgguzRdaI5Wdcw_9sxIC4X0ytsKWwMjkIjg&s"
-    },
-    {
-      "authorName": "SARDOR #2",
-      "name": "AMAL coin (UPDATED)",
-      "price": "10000000",
-      "image": "https://blog.arcana.network/content/images/size/w2000/2024/07/Private-NFTs--The-Next-Big-Thing-.jpeg",
-      "id": "2229"
-    },
-    {
-      "authorName": "SARDOR #3",
-      "name": "NEW NFT",
-      "price": "123",
-      "image": "https://www.smu.edu/-/media/site/meadows/newsstories/2023/bisk-smu-new-masters-program/article_hero_what_are_nfts_2048x640.jpg?h=640&iar=0&w=2048&hash=34526B7D3454C836CCC69D05C7A12334",
-      "id": "8146"
-    },
-    {
-      "id": "c1b6",
+      "id": "agua",
       "authorName": "Javoxir Sinx",
-      "name": "Dogecoin",
-      "price": "0.3",
-      "image": "https://bitcoinworld.co.in/wp-content/uploads/2021/10/photo-1621932802533-e7894a493640.jpeg"
+      "name": "ISTAM",
+      "price": "10.5",
+      "image": "https://news.johncabot.edu/wp-content/uploads/2022/03/nft1.png"
     },
     {
-      "id": "4b19",
-      "authorName": "Jamshed ",
-      "name": "NOT coin (Telegram)",
-      "price": "0.2",
-      "image": "https://assets.staticimg.com/reaper-image/664493f7208b3f00013b798b_What%20Is%20Notcoin%20%28NOT%29-16-9.jpg"
+      "id": "cixj",
+      "authorName": "AKE_FIX",
+      "name": "Monkey",
+      "price": "123",
+      "image": "https://www.reuters.com/resizer/v2/43YAWLITTZJLZIQTCP2JSS4KSM.jpg?auth=97aa50895d96abc0233aee045e9246a221d9afaa3d2470fd2bc7ba66baa1a5cc&width=1080&quality=80"
+    },
+    {
+      "id": "fp91",
+      "authorName": "qwe",
+      "name": "wesrewt",
+      "price": "3424",
+      "image": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F52c18f05-0251-463f-8128-8add0c4ee71c_600x600.png"
+    },
+    {
+      "id": "eisl",
+      "authorName": "Jamshed (UPDATED)",
+      "name": "йцу",
+      "price": "0.3",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJrjSpbZqlb1BtVhZRSiIgWJFAoqP-STFjg&s"
+    },
+    {
+      "id": "i7d8",
+      "authorName": "Javoxir Sinx",
+      "name": "QWERT",
+      "price": "12103",
+      "image": "https://www.coexya.eu/app/uploads/2022/04/nft-singes.webp"
+    },
+    {
+      "id": "o45v",
+      "authorName": "Jamshed (UPDATED)",
+      "name": "Istam",
+      "price": "232",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJrjSpbZqlb1BtVhZRSiIgWJFAoqP-STFjg&s"
     }
   ]
 }

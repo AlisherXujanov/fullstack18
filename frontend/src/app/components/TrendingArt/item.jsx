@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { FiEdit } from "react-icons/fi";
+import { FiTrash2 } from "react-icons/fi";
 import "./style.scss"
 
 function Item(props) {
@@ -9,9 +10,14 @@ function Item(props) {
                 src={props.image}
                 alt="NFT thumbnail" 
             />
-            <span className="edit-nft-btn" onClick={props.updateNFT}>
-                <FiEdit />
-            </span>
+            <div className="nft-actions">
+                <span className="edit-nft-btn" onClick={props.updateNFT}>
+                    <FiEdit />
+                </span>
+                <span className="delete-nft-btn" onClick={props.deleteNFT}>
+                    <FiTrash2 />
+                </span>
+            </div>
             <div className="nft-inner-info">
                 <h2>{props.name}</h2>
                 <div className="details">

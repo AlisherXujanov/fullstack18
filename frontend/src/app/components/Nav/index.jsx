@@ -6,6 +6,7 @@ import LogoPng from "../../../assets/icons/logo.png"
 import Link from "next/link"
 import Searchbox from "../Searchbox"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
 
 // This is OLD version react.js
 // RU: это старый способ
@@ -25,6 +26,11 @@ const navLinks = [
 
 function Nav() {
     const pathname = usePathname()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen)
+    }
 
     return (
         <nav className="nav-wrapper">
@@ -39,7 +45,13 @@ function Nav() {
                 <Searchbox />
             </div>
 
-            <div className="right">
+            <div className="burger-menu" onClick={toggleMenu}>
+                <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            </div>
+
+            <div className={`right ${isMenuOpen ? 'open' : ''}`}>
                 {/* <Link href="/">Explore</Link>
                 <Link href="/about">About</Link>
                 <Link href="/trending">Trending</Link>
@@ -51,6 +63,7 @@ function Nav() {
                                 href={link.path} 
                                 key={link.title}
                                 className={pathname == link.path ? "active" : ""}
+                                onClick={() => setIsMenuOpen(false)}
                             >
                                 {link.title}
                             </Link>

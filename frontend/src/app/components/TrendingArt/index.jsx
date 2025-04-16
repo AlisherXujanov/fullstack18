@@ -1,58 +1,139 @@
 "use client"
 
 import "./style.scss"
-import TrendingNFTs from "../../../store/db.json"
 import Item from "./item"
 import GlobalModal from "../GlobalModal"
-import { useState } from "react"
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
+const API_URL = 'http://localhost:3001'
 
+const initialFormState = {
+    authorName: "",
+    nftName: "",
+    nftPrice: "",
+    image: "",
+    id: ""
+}
+
+// Функции для работы с данными
+async function getTrendingNFTs() {
+    try {
+        const response = await fetch(`${API_URL}/trandingNfts`)
+        if (!response.ok) throw new Error('Ошибка при получении данных')
+        return await response.json()
+    } catch (error) {
+        console.error('Ошибка:', error)
+        return []
+    }
+}
+
+async function addTrendingNFT(nft) {
+    try {
+        const response = await fetch(`${API_URL}/trandingNfts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(nft),
+        })
+        if (!response.ok) throw new Error('Ошибка при добавлении')
+        return await response.json()
+    } catch (error) {
+        console.error('Ошибка:', error)
+        throw error
+    }
+}
+
+async function updateTrendingNFTs(nfts) {
+    try {
+        // Обновляем каждый NFT по отдельности
+        for (const nft of nfts) {
+            const response = await fetch(`${API_URL}/trandingNfts/${nft.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(nft),
+            })
+            if (!response.ok) throw new Error('Ошибка при обновлении')
+        }
+    } catch (error) {
+        console.error('Ошибка:', error)
+        throw error
+    }
+}
+
+async function deleteTrendingNFT(id) {
+    try {
+        const response = await fetch(`${API_URL}/trandingNfts/${id}`, {
+            method: 'DELETE',
+        })
+        if (!response.ok) throw new Error('Ошибка при удалении')
+    } catch (error) {
+        console.error('Ошибка:', error)
+        throw error
+    }
+}
 
 function TrendingArt(props) {
-    const [form, setForm] = useState({ authorName: "", nftName: "", nftPrice: "", image: "", id: "" })
+    const [form, setForm] = useState(initialFormState)
     const [updateMode, setUpdateMode] = useState(false)
+    const [nfts, setNfts] = useState([])
+
+    useEffect(() => {
+        loadNFTs()
+    }, [])
+
+    async function loadNFTs() {
+        const data = await getTrendingNFTs()
+        setNfts(data)
+    }
 
     function cleanUp() {
-        setForm({})
+        setForm(initialFormState)
         setUpdateMode(false)
     }
 
     function handleFormChange(e) {
         const { name, value } = e.target
-        setForm({
-            ...form,
+        setForm(prev => ({
+            ...prev,
             [name]: value
-        })
+        }))
     }
+
     async function submitForm(e) {
         e.preventDefault()
 
-        const URL = "http://localhost:3001/trandingNfts"
         try {
             const dataToSend = {
                 authorName: form.authorName,
                 name: form.nftName,
                 price: form.nftPrice,
-                image: form.image
+                image: form.image,
+                id: updateMode ? form.id : Math.random().toString(36).substr(2, 4)
             }
 
-            const response = await fetch(updateMode ? URL + `/${form.id}` : URL, {
-                method: updateMode ? "PUT" : "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dataToSend),
-            })
-            console.log("Response: ", response)
-            toast.success(updateMode ? "NFT updated successfully" : "NFT created successfully", { theme: "dark" })
+            if (updateMode) {
+                await updateTrendingNFTs(nfts.map(nft => 
+                    nft.id === form.id ? { ...nft, ...dataToSend } : nft
+                ))
+            } else {
+                await addTrendingNFT(dataToSend)
+            }
+            await loadNFTs()
+            toast.success(updateMode ? "NFT успешно обновлен" : "NFT успешно создан", { theme: "dark" })
         }
         catch (e) {
-            toast.error("Ooops!...Error happened", { theme: "dark" })
+            toast.error("Произошла ошибка", { theme: "dark" })
         }
         props.handleShowModal(e, false)
         cleanUp()
     }
+
     function handleUpdateMode(nft) {
         setForm({
             authorName: nft.authorName,
@@ -62,6 +143,32 @@ function TrendingArt(props) {
             id: nft.id
         })
         setUpdateMode(true)
+    }
+
+    async function handleDelete(nft) {
+        confirmAlert({
+            title: 'Подтверждение удаления',
+            message: `Вы уверены, что хотите удалить NFT "${nft.name}"?`,
+            buttons: [
+                {
+                    label: 'Отмена',
+                    onClick: () => {}
+                },
+                {
+                    label: 'Удалить',
+                    onClick: async () => {
+                        try {
+                            await deleteTrendingNFT(nft.id)
+                            await loadNFTs()
+                            toast.success("NFT успешно удален", { theme: "dark" })
+                        }
+                        catch (e) {
+                            toast.error("Ошибка при удалении NFT", { theme: "dark" })
+                        }
+                    }
+                }
+            ]
+        })
     }
 
     return (
@@ -128,7 +235,7 @@ function TrendingArt(props) {
                                         src={form.image}
                                         alt="NFT"
                                         width={100} height={100}
-                                        onClick={() => { setForm({ ...form, image: "" }) }}
+                                        onClick={() => { setForm(prev => ({ ...prev, image: "" })) }}
                                         style={{ borderRadius: '10px', cursor: 'pointer' }}
                                     />
                                 }
@@ -144,7 +251,7 @@ function TrendingArt(props) {
             </div>
 
             <div className="nft-items-wrapper">
-                {TrendingNFTs.trandingNfts.map(nft => {
+                {nfts.map(nft => {
                     return (
                         <Item
                             key={nft.id}
@@ -153,11 +260,11 @@ function TrendingArt(props) {
                             authorName={nft.authorName}
                             image={nft.image}
                             updateNFT={(e) => { props.handleShowModal(e, true); handleUpdateMode(nft) }}
+                            deleteNFT={() => handleDelete(nft)}
                         />
                     )
                 })}
             </div>
-
         </div>
     );
 }
