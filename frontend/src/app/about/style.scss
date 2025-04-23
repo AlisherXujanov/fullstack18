@@ -1,12 +1,11 @@
+@use "sass:color";
 @use "../../assets/styles/globals" as *;
 @use "../../assets/styles/initial.scss" as *;
 
 .about-page {
     padding: 60px 0;
     background-color: #fff;
-    color: $dark;
-    font-family: 'DM Sans', sans-serif;
-    overflow: hidden;
+    color: $dark;    overflow: hidden;
     position: relative;
     
     &::before {
@@ -941,7 +940,7 @@
             }
             
             &:hover {
-                background: darken($red, 10%);
+                background: color.scale($red, $lightness: -10%);
                 transform: translateY(-3px);
                 box-shadow: 0 8px 20px rgba($red, 0.4);
             }
@@ -1078,7 +1077,7 @@
             }
             
             &:hover {
-                background: darken($red, 10%);
+                background: color.scale($red, $lightness: -10%);
                 transform: translateY(-3px);
                 box-shadow: 0 8px 20px rgba($red, 0.4);
             }

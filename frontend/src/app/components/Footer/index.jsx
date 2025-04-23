@@ -10,18 +10,22 @@ const Footer = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
-        // Проверяем сохраненную тему при загрузке
+        // Немедленно проверяем localStorage при монтировании
         const savedTheme = localStorage.getItem('theme');
+        setIsDarkMode(savedTheme === 'dark');
+
+        // Добавляем класс темы сразу, без задержки
         if (savedTheme === 'dark') {
-            setIsDarkMode(true);
             document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
         }
     }, []);
 
     const handleThemeChange = () => {
         const newTheme = !isDarkMode;
         setIsDarkMode(newTheme);
-        
+
         if (newTheme) {
             document.body.classList.add('dark-theme');
             localStorage.setItem('theme', 'dark');
@@ -62,19 +66,18 @@ const Footer = () => {
                     <div className="link-group">
                         <h3>Company</h3>
                         <ul>
-                            <li><a href="/">Explore</a></li>
-                            <li><a href="/about">About</a></li>
+                            <li><Link href="/" prefetch>Explore</Link></li>
+                            <li><Link href="/about" prefetch>About</Link></li>
                         </ul>
                     </div>
 
                     <div className="link-group">
-                        <h3>Cretor</h3>
+                        <h3>Creator</h3>
                         <ul>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/become-artist">Become Artist</a></li>
+                            <li><Link href="/faq" prefetch>FAQ</Link></li>
+                            <li><Link href="/become-artist" prefetch>Become Artist</Link></li>
                         </ul>
                     </div>
-
                     <div className="join-community">
                         <h3>Join our community</h3>
                         <div className="email-input">
@@ -87,20 +90,6 @@ const Footer = () => {
             <div className="footer-bottom">
                 <div className="copyright">
                     <span>© Copyright NFT Distro 2023</span>
-                </div>
-                <div className="social-links">
-                    <a href="#" className="social-link">
-                        <i className="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" className="social-link">
-                        <i className="fab fa-google"></i>
-                    </a>
-                    <a href="#" className="social-link">
-                        <i className="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" className="social-link">
-                        <i className="fab fa-apple"></i>
-                    </a>
                 </div>
             </div>
         </footer>

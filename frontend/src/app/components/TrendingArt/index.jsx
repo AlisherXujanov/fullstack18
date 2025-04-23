@@ -253,8 +253,10 @@ function TrendingArt(props) {
             <div className="nft-items-wrapper">
                 {nfts.map(nft => {
                     return (
+                        // In the render section where you map through NFTs
                         <Item
                             key={nft.id}
+                            id={nft.id}  // Add this line
                             name={nft.name}
                             price={nft.price}
                             authorName={nft.authorName}

@@ -191,6 +191,83 @@
     }
 }
 
+// Стили для темной темы
+body.dark-theme {
+    .faq-page-wrapper {
+        .faq-content {
+            h1 {
+                color: #ffffff;
+            }
+
+            p {
+                color: #b7b7b7;
+            }
+
+            .search-bar {
+                input {
+                    background-color: #333333;
+                    color: #ffffff;
+                    border: 1px solid #4a4a4a;
+
+                    &::placeholder {
+                        color: #b7b7b7;
+                    }
+
+                    &:focus {
+                        border-color: #ff69b4;
+                    }
+                }
+            }
+
+            .tabs {
+                &::after {
+                    background: #4a4a4a;
+                }
+
+                button {
+                    color: #b7b7b7;
+
+                    &:hover:not(.active) {
+                        background-color: #333333;
+                        box-shadow: 0 2px 8px rgba(255, 105, 180, 0.2);
+                    }
+
+                    &.active {
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .faq-items {
+                .faq-item {
+                    background-color: #2d2d2d;
+                    border-bottom: 1px solid #4a4a4a;
+
+                    .question {
+                        border-bottom: 1px solid #4a4a4a;
+
+                        h3 {
+                            color: #ffffff;
+                        }
+
+                        .toggle {
+                            color: #b7b7b7;
+                        }
+                    }
+
+                    .answer {
+                        color: #b7b7b7;
+
+                        &::before {
+                            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 // Медиа-запросы для адаптивности
 @media (max-width: 992px) {
     .faq-page-wrapper {

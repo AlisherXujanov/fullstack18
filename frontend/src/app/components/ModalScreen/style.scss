@@ -11,7 +11,6 @@
     background-color: rgb(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     @include flex();
-    font-family: sans-serif;
 
     .modal-content {
         z-index: 1000;
@@ -59,6 +58,48 @@
 
             &.wallet-c {
                 background: $green-gradient;
+            }
+        }
+    }
+}
+
+// Стили для темной темы
+body.dark-theme {
+    .modal-screen-wrapper {
+        .modal-content {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+            .modal-title {
+                color: #ffffff;
+            }
+
+            #close-modal {
+                color: #ffffff;
+            }
+
+            button {
+                &.wallet-a {
+                    background: linear-gradient(135deg, #FF56BB, #FF8F77);
+                    &:hover {
+                        background: linear-gradient(135deg, #FF8F77, #FF56BB);
+                    }
+                }
+
+                &.wallet-b {
+                    background: linear-gradient(135deg, #6E56FF, #B073FF);
+                    &:hover {
+                        background: linear-gradient(135deg, #B073FF, #6E56FF);
+                    }
+                }
+
+                &.wallet-c {
+                    background: linear-gradient(135deg, #56C2FF, #48FE9C);
+                    &:hover {
+                        background: linear-gradient(135deg, #48FE9C, #56C2FF);
+                    }
+                }
             }
         }
     }

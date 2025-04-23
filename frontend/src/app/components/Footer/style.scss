@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../../assets/styles/globals" as *;
 
 
@@ -37,10 +38,6 @@
                 display: block;
                 margin-bottom: 20px;
                 transition: transform 0.3s ease;
-
-                &:hover {
-                    transform: scale(1.05);
-                }
             }
 
             .description {
@@ -109,15 +106,12 @@
                         position: absolute;
                         bottom: -5px;
                         left: 0;
-                        width: 40px;
+                        width: 100%;
                         height: 2px;
                         background: $red;
-                        transition: width 0.3s ease;
                     }
 
-                    &:hover::after {
-                        width: 100%;
-                    }
+
                 }
 
                 ul {
@@ -194,107 +188,57 @@
             color: $text-color;
             font-size: 14px;
         }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-
-            .social-link {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background-color: $light-gray;
-                color: $text-color;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background-color: $red;
-                    color: $white;
-                    transform: translateY(-3px);
-                }
-            }
-        }
     }
 }
 
 // Стили для темной темы
 body.dark-theme {
     .footer {
-        background: linear-gradient(180deg, $dark 0%, lighten($dark, 5%) 100%);
+        background: linear-gradient(to bottom, $dark, color.scale($dark, $lightness: -5%));
+        
+        .footer-content {
+            .footer-links {
+                .link-group {
+                    h3 {
+                        color: $white;
+                        
+                        &::after {
+                            background: $red;
+                        }
+                    }
 
-        .footer-left {
-            .description {
-                color: $dark-gray;
-            }
-
-            .theme-switcher .switch {
-                background-color: lighten($dark, 10%);
-
-                &:checked {
-                    background-color: $red;
-                }
-            }
-        }
-
-        .footer-links {
-            .link-group {
-                h3 {
-                    color: $white;
-
-                    &::after {
-                        background: $red;
+                    ul li a {
+                        color: $white;
+                        
+                        &:hover {
+                            color: $red;
+                        }
                     }
                 }
 
-                ul li a {
-                    color: $dark-gray;
-
-                    &:hover {
-                        color: $red;
-                    }
-                }
-            }
-
-            .join-community {
-                h3 {
-                    color: $white;
-                }
-
-                .email-input input {
-                    background-color: lighten($dark, 10%);
-                    border-color: $dark-gray;
-                    color: $white;
-
-                    &::placeholder {
-                        color: $dark-gray;
+                .join-community {
+                    h3 {
+                        color: $white;
                     }
 
-                    &:focus {
-                        border-color: $red;
-                        box-shadow: 0 0 0 3px rgba($red, 0.1);
+                    .email-input input {
+                        background-color: color.scale($dark, $lightness: 10%);
+                        border-color: rgba(255, 255, 255, 0.1);
+                        color: $white;
+
+                        &::placeholder {
+                            color: rgba(255, 255, 255, 0.5);
+                        }
                     }
                 }
             }
         }
 
         .footer-bottom {
-            border-top-color: $dark-gray;
-
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            
             .copyright {
-                color: $dark-gray;
-            }
-
-            .social-links .social-link {
-                background-color: lighten($dark, 10%);
-                color: $dark-gray;
-
-                &:hover {
-                    background-color: $red;
-                    color: $white;
-                }
+                color: $white;
             }
         }
     }
@@ -467,16 +411,6 @@ body.dark-theme {
 
             .copyright {
                 font-size: 12px;
-            }
-
-            .social-links {
-                gap: 15px;
-
-                .social-link {
-                    font-size: 16px;
-                    width: 30px;
-                    height: 30px;
-                }
             }
         }
     }

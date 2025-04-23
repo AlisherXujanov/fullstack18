@@ -10,7 +10,6 @@
     background-color: rgb(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     @include flex();
-    font-family: sans-serif;
 
     .global-modal-content {
         width: 500px;
@@ -29,6 +28,44 @@
             font-size: 30px;
             color: $white;
             @include circle(20px);
+        }
+    }
+}
+
+// Стили для темной темы
+body.dark-theme {
+    .global-modal-wrapper {
+        .global-modal-content {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+            #close-global-modal {
+                color: #ffffff;
+            }
+
+            h1, h2, h3, h4, h5, h6, p {
+                color: #ffffff;
+            }
+
+            input, textarea, select {
+                background-color: #333333;
+                color: #ffffff;
+                border: 1px solid #4a4a4a;
+
+                &:focus {
+                    border-color: #4a9eff;
+                }
+            }
+
+            button {
+                background-color: #4a9eff;
+                color: #ffffff;
+                
+                &:hover {
+                    background-color: #66b3ff;
+                }
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../../assets/styles/globals" as *;
 
 
@@ -147,8 +148,6 @@
             }
 
             .nft-inner-info {
-                font-family: sans-serif;
-
                 h2 {
                     color: $dark;
                     font-size: 1.2em;
@@ -203,7 +202,8 @@
             }
 
             .edit-nft-btn,
-            .delete-nft-btn {
+            .delete-nft-btn,
+            .view-nft-btn {
                 background-color: $white;
                 cursor: pointer;
                 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
@@ -246,7 +246,7 @@
     }
 }
 
-// Стили для темной темы
+// Dark theme styles
 body.dark-theme {
     .trending-art-wrapper {
         .intro {
@@ -266,7 +266,7 @@ body.dark-theme {
                 }
 
                 input {
-                    background-color: lighten($dark, 10%);
+                    background-color: color.scale($dark, $lightness: 10%);
                     border-color: $dark-gray;
                     color: $white;
 
@@ -284,7 +284,7 @@ body.dark-theme {
 
         .nft-items-wrapper {
             .nft-item-wrapper {
-                background-color: lighten($dark, 5%);
+                background-color: color.scale($dark, $lightness: 5%);
 
                 .nft-inner-info {
                     h2 {
@@ -313,13 +313,14 @@ body.dark-theme {
                 }
 
                 .edit-nft-btn,
-                .delete-nft-btn {
-                    background-color: lighten($dark, 10%);
+                .delete-nft-btn,
+                .view-nft-btn {
+                    background-color: color.scale($dark, $lightness: 10%);
                 }
 
                 &:hover {
+                    background-color: color.scale($dark, $lightness: 8%);
                     box-shadow: 0 0 20px 5px rgba($dark, 0.3);
-                    background-color: lighten($dark, 8%);
                 }
             }
         }
@@ -393,7 +394,8 @@ body.dark-theme {
                 }
                 
                 .edit-nft-btn,
-                .delete-nft-btn {
+                .delete-nft-btn,
+                .view-nft-btn {
                     @include circle(40px);
                     
                     svg {
@@ -418,5 +420,22 @@ body.dark-theme {
                 }
             }
         }
+    }
+}
+
+.view-nft-btn {
+    background-color: $white;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    @include circle(50px);
+    @include flex();
+
+    svg {
+        font-size: 1.5em;
+    }
+
+    .view-nft-btn svg {
+        fill: #4a9eff;
+        color: $white;
     }
 }
