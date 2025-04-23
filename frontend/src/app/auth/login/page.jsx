@@ -1,15 +1,44 @@
 "use client"
 import { useState } from "react"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { toast } from "react-toastify"
+import { auth } from "@/firebase/config"
 import Link from "next/link"
 import "../style.scss"
 
 function Login() {
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    })
 
     function submitForm(e) {
         e.preventDefault()
+
+        for (let key in formData) {
+            if (formData[key] === "") {
+                toast.error("Please fill in all fields", { theme: "dark" })
+                return
+            }
+        }
+
+        signInWithEmailAndPassword(auth, formData.email, formData.password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                console.log(user)
+                toast.success("Signed in successfully!", { theme: "dark" })
+            })
+            .catch((error) => {
+                toast.error(error.message, { theme: "dark" })
+            })
     }
+
+
     function handleFormChange(e) {
-        console.log(e.target.value)
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
     }
 
     return (
