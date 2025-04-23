@@ -21,6 +21,7 @@ const navLinks = [
     {  title: "About",    path: "/about" },
     {  title: "Trending", path: "/trending" },
     {  title: "FAQ",      path: "/faq" },
+    {  title: "Login",    path: "/auth/login" },
 ]
 
 

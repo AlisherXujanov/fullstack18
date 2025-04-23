@@ -1,3 +1,5 @@
+// npx json-server -w src/store/db.json -p 3001
+
 'use client'
 
 import Wallet from "./components/Wallet"
