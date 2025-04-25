@@ -7,6 +7,8 @@ import Link from "next/link"
 import Searchbox from "../Searchbox"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
+import { auth } from '@/firebase/config'
+import { useRouter } from 'next/navigation'
 
 // This is OLD version react.js
 // RU: это старый способ
@@ -17,26 +19,41 @@ import { useState } from "react"
 // import Link from "next/link"
 
 const nonRegisteredLinks = [
-    {  title: "About",    path: "/about" },
-    {  title: "FAQ",      path: "/faq" },
-    {  title: "Login",    path: "/auth/login" },
+    { title: "About", path: "/about" },
+    { title: "FAQ", path: "/faq" },
+    { title: "Login", path: "/auth/login" },
 ]
 const registeredLinks = [
-    {  title: "Explore",  path: "/",  },
-    {  title: "Trending", path: "/trending" },
-    {  title: "About",    path: "/about" },
-    {  title: "FAQ",      path: "/faq" },
-    {  title: "Logout",   path: "/#" },
+    { title: "Explore", path: "/", },
+    { title: "Trending", path: "/trending" },
+    { title: "About", path: "/about" },
+    { title: "FAQ", path: "/faq" },
+    { title: "Logout", path: "/#", id: "logout-btn" },
 ]
 
 
 function Nav(props) {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const router = useRouter()
     const availableLinks = props.user ? registeredLinks : nonRegisteredLinks
 
-    const toggleMenu = () => {
+    const toggleMenu = async(e) => {
         setIsMenuOpen(!isMenuOpen)
+    }
+
+
+    const handleLogout = async (e) => {
+        const ID = e.target.id
+        if (ID === 'logout-btn') {
+            try {
+                await auth.signOut()
+                toast.success('Logged out successfully', { theme: 'dark' })
+                router.push('/auth')
+            } catch (error) {
+                toast.error(error.message, { theme: 'dark' })
+            }
+        }
     }
 
     return (
@@ -63,11 +80,15 @@ function Nav(props) {
                 {
                     availableLinks.map((link) => {
                         return (
-                            <Link 
-                                href={link.path} 
+                            <Link
+                                href={link.path}
                                 key={link.title}
                                 className={pathname == link.path ? "active" : ""}
-                                onClick={() => setIsMenuOpen(false)}
+                                onClick={(e) => {
+                                    setIsMenuOpen(false);
+                                    handleLogout(e);
+                                }}
+                                id={link.id}
                             >
                                 {link.title}
                             </Link>
