@@ -1,11 +1,13 @@
 "use client"
 import { useState } from "react"
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import { toast } from "react-toastify"
 import { auth } from "@/firebase/config"
 import Link from "next/link"
 import "../style.scss"
 import { useRouter } from 'next/navigation'
+import { FcGoogle } from "react-icons/fc";
+
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -40,12 +42,22 @@ function Login() {
             })
     }
 
-
     function handleFormChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         })
+    }
+
+    async function handleGoogleSignIn() {
+        try {
+            const provider = new GoogleAuthProvider()
+            const result = await signInWithPopup(auth, provider)
+            const user = result.user
+            toast.success("Signed in with Google successfully!", { theme: "dark" })
+        } catch (error) {
+            toast.error(error.message, { theme: "dark" })
+        }
     }
 
     return (
@@ -77,6 +89,11 @@ function Login() {
                 <div className="form-field">
                     <button type="submit">Sign in</button>
                 </div>
+                <div className="form-field">
+                    <button id="google-btn" type="button" className="google-btn" onClick={handleGoogleSignIn}>
+                        <FcGoogle /> Sign in with Google
+                    </button>
+                </div>
             </form>
 
             <p>
@@ -86,6 +103,6 @@ function Login() {
             </p>
         </div>
     )
-} 
+}
 
 export default Login

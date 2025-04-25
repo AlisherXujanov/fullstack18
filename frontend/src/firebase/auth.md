@@ -385,6 +385,36 @@ export default function RootLayout({ children }) {
 }
 ```
 
+## Step 8: Add Google Sign In
+
+Create a new file `src/app/components/Auth/GoogleSignIn.jsx`:
+
+```jsx
+"use client"
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { auth } from "@/firebase/config"
+import { toast } from "react-toastify"  
+
+function GoogleSignIn() {
+    const handleGoogleSignIn = async () => {
+        try {
+            const provider = new GoogleAuthProvider()
+            const result = await signInWithPopup(auth, provider)
+            const user = result.user
+            toast.success("Signed in with Google successfully!", { theme: "dark" })
+        } catch (error) {
+            toast.error(error.message, { theme: "dark" })
+        }
+    }
+    return (
+        <button onClick={handleGoogleSignIn} className="google-btn">
+            <FcGoogle /> Sign in with Google
+        </button>
+    )
+}
+export default GoogleSignIn
+```
+
 ## Common Issues & Solutions
 
 1. **Firebase Configuration Error**

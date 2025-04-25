@@ -102,6 +102,20 @@
     }
 }
 
+#google-btn {
+    width: auto;
+    background: $dark;
+    color: $light;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 5px 20px;
+    @include flex();
+
+    svg {
+        font-size: 2rem;
+    }
+}
+
 // Responsive adjustments
 @media (max-width: 480px) {
     .auth-container {
