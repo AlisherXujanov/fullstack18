@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import { auth } from "@/firebase/config"
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 
 function Register() {
@@ -13,7 +14,7 @@ function Register() {
         password: "",
         password2: "",
     })
-
+    const router = useRouter()
     function handleFormChange(e) {
         setFormData({
             ...formData,
@@ -41,6 +42,7 @@ function Register() {
                 const user = userCredential.user
                 toast.success("Account created successfully!", { theme: "dark" })
                 alert("Account created successfully!")
+                router.push('/auth/login')
             })
             .catch((error) => {
                 toast.error(error.message, { theme: "dark" })

@@ -49,9 +49,11 @@ function Nav(props) {
             try {
                 await auth.signOut()
                 toast.success('Logged out successfully', { theme: 'dark' })
-                router.push('/auth')
+                alert('Logged out successfully')
+                router.push('/')
             } catch (error) {
                 toast.error(error.message, { theme: 'dark' })
+                alert(error.message)
             }
         }
     }

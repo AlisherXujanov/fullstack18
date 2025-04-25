@@ -5,12 +5,14 @@ import { toast } from "react-toastify"
 import { auth } from "@/firebase/config"
 import Link from "next/link"
 import "../style.scss"
+import { useRouter } from 'next/navigation'
 
 function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     })
+    const router = useRouter()
 
     function submitForm(e) {
         e.preventDefault()
@@ -29,10 +31,12 @@ function Login() {
                 console.log(user)
                 toast.success("Signed in successfully!", { theme: "dark" })
                 alert("Signed in successfully!")
+                router.push('/')
             })
             .catch((error) => {
                 toast.error(error.message, { theme: "dark" })
                 alert(error.message)
+                router.push('/auth/login')
             })
     }
 
