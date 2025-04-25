@@ -4,8 +4,12 @@ import "../assets/styles/initial.scss"
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
 import ThemeProvider from './providers/ThemeProvider'
+import { useAuth } from "@/hooks/useAuth"
 
 export default function RootLayout({ children }) {
+  const { user, loading } = useAuth()
+
+ 
   return (
     <html lang="en">
       <head>
@@ -13,7 +17,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ThemeProvider>
-          <Nav />
+          <Nav user={user} />
           {children}
           <Footer />
         </ThemeProvider>

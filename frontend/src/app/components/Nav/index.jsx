@@ -16,18 +16,24 @@ import { useState } from "react"
 // RU: это новый способ
 // import Link from "next/link"
 
-const navLinks = [
-    {  title: "Explore",  path: "/",  },
+const nonRegisteredLinks = [
     {  title: "About",    path: "/about" },
-    {  title: "Trending", path: "/trending" },
     {  title: "FAQ",      path: "/faq" },
     {  title: "Login",    path: "/auth/login" },
 ]
+const registeredLinks = [
+    {  title: "Explore",  path: "/",  },
+    {  title: "Trending", path: "/trending" },
+    {  title: "About",    path: "/about" },
+    {  title: "FAQ",      path: "/faq" },
+    {  title: "Logout",   path: "/#" },
+]
 
 
-function Nav() {
+function Nav(props) {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const availableLinks = props.user ? registeredLinks : nonRegisteredLinks
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -52,13 +58,10 @@ function Nav() {
                 <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
             </div>
 
+
             <div className={`right ${isMenuOpen ? 'open' : ''}`}>
-                {/* <Link href="/">Explore</Link>
-                <Link href="/about">About</Link>
-                <Link href="/trending">Trending</Link>
-                <Link href="/faq">FAQ</Link> */}
                 {
-                    navLinks.map((link) => {
+                    availableLinks.map((link) => {
                         return (
                             <Link 
                                 href={link.path} 
