@@ -35,7 +35,7 @@
         width: 30px;
         height: 21px;
         cursor: pointer;
-        z-index: 10;
+        z-index: 9;
 
         .burger-line {
             width: 100%;
@@ -137,7 +137,7 @@ body.dark-theme {
         position: sticky;
         top: 0;
         background-color: $light;
-        z-index: 100;
+        z-index: 9;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
         .left {

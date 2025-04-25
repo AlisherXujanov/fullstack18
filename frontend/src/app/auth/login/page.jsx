@@ -18,6 +18,7 @@ function Login() {
         for (let key in formData) {
             if (formData[key] === "") {
                 toast.error("Please fill in all fields", { theme: "dark" })
+                alert("Please fill in all fields")
                 return
             }
         }
@@ -27,9 +28,11 @@ function Login() {
                 const user = userCredential.user
                 console.log(user)
                 toast.success("Signed in successfully!", { theme: "dark" })
+                alert("Signed in successfully!")
             })
             .catch((error) => {
                 toast.error(error.message, { theme: "dark" })
+                alert(error.message)
             })
     }
 

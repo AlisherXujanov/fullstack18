@@ -37,36 +37,35 @@ body.dark-theme {
     color: #ffffff;
 
     // Общие стили для темной темы
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: #ffffff;
     }
 
     a {
         color: #4a9eff;
-        
+
         &:hover {
             color: #66b3ff;
         }
     }
 
     // Стили для карточек и контейнеров
-    .card, .container, .section {
+    .card,
+    .container,
+    .section {
         background-color: #2d2d2d;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    // Стили для кнопок
-    button, .button {
-        background-color: #4a9eff;
-        color: #ffffff;
-        
-        &:hover {
-            background-color: #66b3ff;
-        }
-    }
-
     // Стили для инпутов
-    input, textarea, select {
+    input,
+    textarea,
+    select {
         background-color: #333333;
         color: #ffffff;
         border: 1px solid #4a4a4a;
@@ -81,7 +80,8 @@ body.dark-theme {
         background-color: #2d2d2d;
         color: #ffffff;
 
-        th, td {
+        th,
+        td {
             border-color: #4a4a4a;
         }
 

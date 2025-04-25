@@ -45,7 +45,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     max-height: 300px;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 11;
 
     .suggestion-item {
         @include flex($justify: flex-start, $gap: 10px);

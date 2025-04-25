@@ -2,8 +2,9 @@
 import Link from "next/link";
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
-import { toast } from "react-toastify"
 import { auth } from "@/firebase/config"
+import { toast } from 'react-toastify'
+
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -39,9 +40,11 @@ function Register() {
             .then((userCredential) => {
                 const user = userCredential.user
                 toast.success("Account created successfully!", { theme: "dark" })
+                alert("Account created successfully!")
             })
             .catch((error) => {
                 toast.error(error.message, { theme: "dark" })
+                alert(error.message)
             })
     }
 
