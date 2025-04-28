@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/firebase/config'
-import { registeredLinks as protectedRoutes } from '@/store'
+import { registeredLinks as protectedRoutes, nonRegisteredLinks as publicRoutes } from '@/store'
 
 
 // We MUST call this as 'middleware'
@@ -8,8 +8,17 @@ export function middleware(request) {
     const session = request.cookies.get('session')
     const { pathname } = request.nextUrl
 
-    // Extract just the paths from protectedRoutes
+    // Extract just the paths from both route types
     const protectedPaths = protectedRoutes.map(route => route.path)
+    const publicPaths = publicRoutes.map(route => route.path)
+
+    // Check if the current route is public
+    const isPublicRoute = publicPaths.includes(pathname)
+
+    // If it's a public route, allow access
+    if (isPublicRoute) {
+        return NextResponse.next()
+    }
 
     // Check if the current route is protected
     const isProtectedRoute = protectedPaths.includes(pathname)
