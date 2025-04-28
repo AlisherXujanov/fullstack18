@@ -37,12 +37,12 @@ function Nav(props) {
         if (ID === 'logout-btn') {
             try {
                 await auth.signOut()
+                // Clear session cookie
+                document.cookie = 'session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=strict'
                 toast.success('Logged out successfully', { theme: 'dark' })
-                alert('Logged out successfully')
                 router.push('/')
             } catch (error) {
                 toast.error(error.message, { theme: 'dark' })
-                alert(error.message)
             }
         }
     }

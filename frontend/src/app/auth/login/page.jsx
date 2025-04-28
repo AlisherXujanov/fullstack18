@@ -30,9 +30,9 @@ function Login() {
         signInWithEmailAndPassword(auth, formData.email, formData.password)
             .then((userCredential) => {
                 const user = userCredential.user
-                console.log(user)
+                // Set session cookie
+                document.cookie = `session=${user.uid}; path=/; max-age=3600; secure; samesite=strict`
                 toast.success("Signed in successfully!", { theme: "dark" })
-                alert("Signed in successfully!")
                 router.push('/')
             })
             .catch((error) => {
@@ -54,7 +54,10 @@ function Login() {
             const provider = new GoogleAuthProvider()
             const result = await signInWithPopup(auth, provider)
             const user = result.user
+            // Set session cookie
+            document.cookie = `session=${user.uid}; path=/; max-age=3600; secure; samesite=strict`
             toast.success("Signed in with Google successfully!", { theme: "dark" })
+            router.push('/')
         } catch (error) {
             toast.error(error.message, { theme: "dark" })
         }
