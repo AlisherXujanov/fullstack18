@@ -1,6 +1,6 @@
 "use client"
 
-import "./style.scss";
+import "./style.scss"
 import Image from "next/image"
 import LogoPng from "../../../assets/icons/logo.png"
 import Link from "next/link"
@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { auth } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
+import { registeredLinks, nonRegisteredLinks } from "@/store"
 
 // This is OLD version react.js
 // RU: это старый способ
@@ -18,18 +19,6 @@ import { useRouter } from 'next/navigation'
 // RU: это новый способ
 // import Link from "next/link"
 
-const nonRegisteredLinks = [
-    { title: "About", path: "/about" },
-    { title: "FAQ", path: "/faq" },
-    { title: "Login", path: "/auth/login" },
-]
-const registeredLinks = [
-    { title: "Explore", path: "/", },
-    { title: "Trending", path: "/trending" },
-    { title: "About", path: "/about" },
-    { title: "FAQ", path: "/faq" },
-    { title: "Logout", path: "/#", id: "logout-btn" },
-]
 
 
 function Nav(props) {
