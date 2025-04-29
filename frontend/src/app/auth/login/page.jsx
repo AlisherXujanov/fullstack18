@@ -22,7 +22,6 @@ function Login() {
         for (let key in formData) {
             if (formData[key] === "") {
                 toast.error("Please fill in all fields", { theme: "dark" })
-                alert("Please fill in all fields")
                 return
             }
         }
@@ -37,7 +36,6 @@ function Login() {
             })
             .catch((error) => {
                 toast.error(error.message, { theme: "dark" })
-                alert(error.message)
                 router.push('/auth/login')
             })
     }
