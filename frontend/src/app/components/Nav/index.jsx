@@ -10,6 +10,7 @@ import { useState } from "react"
 import { auth } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
 import { registeredLinks, nonRegisteredLinks } from "@/store"
+import { toast } from "react-toastify"
 
 // This is OLD version react.js
 // RU: это старый способ
