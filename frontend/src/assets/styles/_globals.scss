@@ -41,3 +41,29 @@ $red: #FF56BB;
     height: $size;
     border-radius: 50%;
 }
+
+@mixin scrollbar ($bg-color) {
+    &::-webkit-scrollbar {
+        width: 8px;
+        background: $bg-color;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $bg-color;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $red-gradient;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: $red-gradient-reverse;
+        }
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: $bg-color;
+    }
+}

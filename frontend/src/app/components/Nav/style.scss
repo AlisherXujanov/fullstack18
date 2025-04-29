@@ -19,11 +19,41 @@
 
         a {
             padding: 20px 10px;
+            position: relative;
+            transition: all 0.3s ease;
+            color: $dark;
+            text-decoration: none;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: $red;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            &:hover {
+                color: $red;
+                transform: translateY(-2px);
+
+                &::before {
+                    width: 100%;
+                }
+            }
 
             &.active {
                 color: $red;
                 font-weight: bold;
-                border-bottom: 2px solid $red;
+
+                &::before {
+                    width: 100%;
+                    background-color: $red;
+                }
             }
         }
     }
@@ -72,10 +102,10 @@ body.dark-theme {
 
         .right {
             background-color: $dark;
-            
+
             a {
                 color: $white;
-                
+
                 &.active {
                     color: $red;
                 }
@@ -261,4 +291,3 @@ body.dark-theme {
         }
     }
 }
-    

@@ -32,61 +32,69 @@ a {
 }
 
 // Глобальные стили для темной темы
-body.dark-theme {
-    background-color: #1a1a1a;
-    color: #ffffff;
+body {
+    background-color: $light;
+    @include scrollbar($light);
 
-    // Общие стили для темной темы
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    &.dark-theme {
+        background-color: $dark;
         color: #ffffff;
-    }
+        overflow-x: hidden;
+        overflow-y: scroll;
+        @include scrollbar($dark);
 
-    a {
-        color: #4a9eff;
-
-        &:hover {
-            color: #66b3ff;
-        }
-    }
-
-    // Стили для карточек и контейнеров
-    .card,
-    .container,
-    .section {
-        background-color: #2d2d2d;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    // Стили для инпутов
-    input,
-    textarea,
-    select {
-        background-color: #333333;
-        color: #ffffff;
-        border: 1px solid #4a4a4a;
-
-        &:focus {
-            border-color: #4a9eff;
-        }
-    }
-
-    // Стили для таблиц
-    table {
-        background-color: #2d2d2d;
-        color: #ffffff;
-
-        th,
-        td {
-            border-color: #4a4a4a;
+        // Общие стили для темной темы
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #ffffff;
         }
 
-        tr:hover {
+        a {
+            color: #4a9eff;
+
+            &:hover {
+                color: #66b3ff;
+            }
+        }
+
+        // Стили для карточек и контейнеров
+        .card,
+        .container,
+        .section {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        // Стили для инпутов
+        input,
+        textarea,
+        select {
             background-color: #333333;
+            color: #ffffff;
+            border: 1px solid #4a4a4a;
+
+            &:focus {
+                border-color: #4a9eff;
+            }
+        }
+
+        // Стили для таблиц
+        table {
+            background-color: #2d2d2d;
+            color: #ffffff;
+
+            th,
+            td {
+                border-color: #4a4a4a;
+            }
+
+            tr:hover {
+                background-color: #333333;
+            }
         }
     }
 }

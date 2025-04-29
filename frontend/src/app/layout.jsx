@@ -7,6 +7,7 @@ import ThemeProvider from './providers/ThemeProvider'
 import { useAuth } from "@/hooks/useAuth"
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import LoadingBar from './components/LoadingBar'
 
 export default function RootLayout({ children }) {
   const { user, loading } = useAuth()
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ThemeProvider>
+          <LoadingBar />
           <Nav user={user} />
           {children}
           <Footer />
