@@ -149,6 +149,85 @@ const registeredLinks = [
    - If valid, allows access to protected route
    - If invalid, redirects to login
 
+## Step 4: Cookie Management
+
+The application uses a centralized cookie management system through utility functions in `src/utils/cookies.js`:
+
+```js
+// Cookie management utilities
+
+/**
+ * Sets a session cookie with the user's UID
+ * @param {string} uid - User's unique identifier
+ */
+export const setSessionCookie = (uid) => {
+    document.cookie = `session=${uid}; path=/; max-age=2592000; secure; samesite=strict`
+}
+
+/**
+ * Removes the session cookie
+ */
+export const removeSessionCookie = () => {
+    document.cookie = 'session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=strict'
+}
+
+/**
+ * Gets the session cookie value
+ * @returns {string|null} The session cookie value or null if not found
+ */
+export const getSessionCookie = () => {
+    const cookies = document.cookie.split(';')
+    const sessionCookie = cookies.find(cookie => cookie.trim().startsWith('session='))
+    return sessionCookie ? sessionCookie.split('=')[1] : null
+}
+```
+
+### Cookie Management Usage:
+
+1. **Setting Session Cookie**:
+   ```jsx
+   // In login component
+   import { setSessionCookie } from "@/utils/cookies"
+   
+   // After successful authentication
+   setSessionCookie(user.uid)
+   ```
+
+2. **Removing Session Cookie**:
+   ```jsx
+   // In logout handler
+   import { removeSessionCookie } from "@/utils/cookies"
+   
+   // During logout
+   removeSessionCookie()
+   ```
+
+3. **Getting Session Cookie**:
+   ```jsx
+   // When checking authentication status
+   import { getSessionCookie } from "@/utils/cookies"
+   
+   const session = getSessionCookie()
+   ```
+
+### Cookie Security Features:
+
+1. **Secure Flag**:
+   - Cookie is only sent over HTTPS connections
+   - Prevents man-in-the-middle attacks
+
+2. **SameSite Policy**:
+   - `SameSite=Strict` prevents CSRF attacks
+   - Cookie is only sent in first-party context
+
+3. **Expiration**:
+   - Session cookie expires after 30 days (2592000 seconds)
+   - Automatic cleanup of expired sessions
+
+4. **Path Restriction**:
+   - Cookie is available across all paths (`path=/`)
+   - Ensures consistent authentication state
+
 ## Best Practices
 
 1. **Security**:

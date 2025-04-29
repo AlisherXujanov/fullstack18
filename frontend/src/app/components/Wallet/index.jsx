@@ -3,7 +3,7 @@
 import "./style.scss";
 import Image from "next/image";
 import ImageNFT from "../../../assets/images/image_NFT.png";
-import ModalScreen from "../ModalScreen";
+import Modal from "../Modal";
 import { useState } from "react"
 
 function Wallet() {
@@ -25,7 +25,18 @@ function Wallet() {
                     </svg> Connect Wallet
                 </div>
                 {
-                    showModal && <ModalScreen handleShowModal={handleShowModal} />
+                    showModal && (
+                        <Modal
+                            handleShowModal={handleShowModal}
+                            title="Sign with your wallet"
+                            description="Sign Wallet NFT, the secure digital storage for unique assets, take a step towards the future"
+                            buttons={[
+                                { text: "Connect Wallet A", className: "wallet-a", onClick: () => {} },
+                                { text: "Connect Wallet B", className: "wallet-b", onClick: () => {} },
+                                { text: "Connect Wallet C", className: "wallet-c", onClick: () => {} }
+                            ]}
+                        />
+                    )
                 }
             </div>
             <div className="right">

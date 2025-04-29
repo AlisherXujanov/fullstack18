@@ -54,54 +54,119 @@
 
         h1 {
             color: $dark;
-            margin-bottom: 30px;
+            margin-bottom: 1.5rem;
             text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            background: $red-gradient;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .form-field {
-            margin-bottom: 20px;
+            margin-bottom: 1.2rem;
             text-align: left;
+            position: relative;
 
             label {
                 display: block;
-                margin-bottom: 8px;
+                margin-bottom: 0.5rem;
                 color: $dark;
-                font-weight: 500;
+                font-weight: 600;
+                font-size: 0.95rem;
+                letter-spacing: 0.5px;
+                transform: translateY(0);
+                transition: all 0.3s ease;
             }
 
             &>* {
-                margin: 5px 0;
-            }
-
-            input,
-            button {
-                width: 100%;
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: 1px solid $dark-gray;
-                border-radius: 10px;
+                margin: 3px 0;
             }
 
             input {
-                background-color: $white;
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border: 2px solid rgba($dark-gray, 0.15);
+                border-radius: 10px;
+                background-color: rgba($white, 0.9);
                 color: $dark;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
                 &::placeholder {
-                    color: $dark-gray;
+                    color: rgba($dark-gray, 0.5);
+                    font-size: 0.9rem;
                 }
 
                 &:focus {
                     border-color: $red;
-                    box-shadow: 0 0 0 3px rgba($red, 0.1);
+                    box-shadow: 0 0 0 3px rgba($red, 0.15);
+                    outline: none;
+                    background-color: $white;
+                }
+
+                &:hover {
+                    border-color: rgba($dark-gray, 0.3);
+                    background-color: $white;
                 }
             }
 
             button {
+                width: 100%;
+                padding: 0.8rem 1.2rem;
                 background: $red-gradient;
                 color: $white;
-                font-size: 1.2em;
+                font-size: 1rem;
                 font-weight: 600;
+                border: none;
+                border-radius: 10px;
                 cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease;
+                    z-index: -1;
+                }
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba($red, 0.3);
+
+                    &::before {
+                        transform: translateX(0);
+                    }
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+
+            img {
+                margin-top: 0.8rem;
+                border: 2px solid rgba($dark-gray, 0.15);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+                &:hover {
+                    border-color: $red;
+                    transform: scale(1.02);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
             }
         }
     }
@@ -257,7 +322,10 @@ body.dark-theme {
 
         .create-nft-form {
             h1 {
-                color: $white;
+                background: $red-gradient;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             }
 
             .form-field {
@@ -266,18 +334,29 @@ body.dark-theme {
                 }
 
                 input {
-                    background-color: color.scale($dark, $lightness: 10%);
-                    border-color: $dark-gray;
+                    background-color: rgba(color.scale($dark, $lightness: 5%), 0.9);
+                    border-color: rgba($dark-gray, 0.2);
                     color: $white;
 
                     &::placeholder {
-                        color: $dark-gray;
+                        color: rgba($dark-gray, 0.6);
                     }
 
                     &:focus {
                         border-color: $red;
-                        box-shadow: 0 0 0 3px rgba($red, 0.1);
+                        box-shadow: 0 0 0 4px rgba($red, 0.2);
+                        background-color: color.scale($dark, $lightness: 8%);
                     }
+
+                    &:hover {
+                        border-color: rgba($dark-gray, 0.4);
+                        background-color: color.scale($dark, $lightness: 8%);
+                    }
+                }
+
+                img {
+                    border-color: rgba($dark-gray, 0.2);
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
                 }
             }
         }
@@ -331,17 +410,17 @@ body.dark-theme {
 @media screen and (max-width: 1024px) {
     .trending-art-wrapper {
         padding: 20px 50px;
-        
+
         .nft-items-wrapper {
             @include grid(3, 15px);
-            
+
             .nft-item-wrapper {
                 width: 100%;
-                
+
                 img {
                     height: 220px;
                 }
-                
+
                 .nft-inner-info {
                     .details {
                         .author {
@@ -351,7 +430,7 @@ body.dark-theme {
                 }
             }
         }
-        
+
         .create-nft-button {
             font-size: 1.1em;
             padding: 8px 16px;
@@ -363,56 +442,57 @@ body.dark-theme {
 @media screen and (max-width: 767px) {
     .trending-art-wrapper {
         padding: 15px 20px;
-        
+
         .intro {
             flex-direction: column;
             gap: 15px;
             align-items: center;
             text-align: center;
         }
-        
+
         .nft-items-wrapper {
             @include grid(1, 15px);
-            
+
             .nft-item-wrapper {
                 width: 100%;
-                
+
                 img {
                     height: 200px;
                 }
-                
+
                 .nft-inner-info {
                     .details {
                         .author {
                             font-size: 1em;
                         }
-                        
+
                         .price {
                             font-size: 0.9em;
                         }
                     }
                 }
-                
+
                 .edit-nft-btn,
                 .delete-nft-btn,
                 .view-nft-btn {
                     @include circle(40px);
-                    
+
                     svg {
                         font-size: 1.2em;
                     }
                 }
             }
         }
-        
+
         .create-nft-button {
             width: 100%;
             font-size: 1em;
             padding: 10px 15px;
         }
-        
+
         .create-nft-form {
             .form-field {
+
                 input,
                 button {
                     font-size: 0.9em;

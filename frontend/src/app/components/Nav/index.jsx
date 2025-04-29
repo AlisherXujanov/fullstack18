@@ -11,6 +11,8 @@ import { auth } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
 import { registeredLinks, nonRegisteredLinks } from "@/store"
 import { toast } from "react-toastify"
+import { removeSessionCookie } from "@/utils/cookies"
+import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
 
 // This is OLD version react.js
 // RU: это старый способ
@@ -38,8 +40,7 @@ function Nav(props) {
         if (ID === 'logout-btn') {
             try {
                 await auth.signOut()
-                // Clear session cookie
-                document.cookie = 'session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=strict'
+                removeSessionCookie()
                 toast.success('Logged out successfully', { theme: 'dark' })
                 router.push('/')
             } catch (error) {
@@ -71,6 +72,25 @@ function Nav(props) {
             <div className={`right ${isMenuOpen ? 'open' : ''}`}>
                 {
                     availableLinks.map((link) => {
+                        const getIcon = () => {
+                            switch(link.title) {
+                                case 'Explore':
+                                    return <FaHome className="nav-icon" />;
+                                case 'Trending':
+                                    return <FaFire className="nav-icon" />;
+                                case 'About':
+                                    return <FaInfoCircle className="nav-icon" />;
+                                case 'FAQ':
+                                    return <FaQuestionCircle className="nav-icon" />;
+                                case 'Login':
+                                    return <FaSignInAlt className="nav-icon" />;
+                                case 'Logout':
+                                    return <FaSignOutAlt className="nav-icon" />;
+                                default:
+                                    return null;
+                            }
+                        };
+
                         return (
                             <Link
                                 href={link.path}
@@ -82,7 +102,8 @@ function Nav(props) {
                                 }}
                                 id={link.id}
                             >
-                                {link.title}
+                                {getIcon()}
+                                <span>{link.title}</span>
                             </Link>
                         )
                     })

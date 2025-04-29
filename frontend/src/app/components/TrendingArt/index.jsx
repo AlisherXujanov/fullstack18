@@ -2,10 +2,8 @@
 
 import "./style.scss"
 import Item from "./item"
-import GlobalModal from "../GlobalModal"
-import { confirmAlert } from 'react-confirm-alert'
+import Modal from "../Modal"
 import { useState, useEffect } from "react"
-import 'react-confirm-alert/src/react-confirm-alert.css'
 import { toast } from 'react-toastify'
 
 const API_URL = 'http://localhost:3001'
@@ -82,6 +80,8 @@ function TrendingArt(props) {
     const [form, setForm] = useState(initialFormState)
     const [updateMode, setUpdateMode] = useState(false)
     const [nfts, setNfts] = useState([])
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [nftToDelete, setNftToDelete] = useState(null)
 
     useEffect(() => {
         loadNFTs()
@@ -146,29 +146,21 @@ function TrendingArt(props) {
     }
 
     async function handleDelete(nft) {
-        confirmAlert({
-            title: 'Подтверждение удаления',
-            message: `Вы уверены, что хотите удалить NFT "${nft.name}"?`,
-            buttons: [
-                {
-                    label: 'Отмена',
-                    onClick: () => {}
-                },
-                {
-                    label: 'Удалить',
-                    onClick: async () => {
-                        try {
-                            await deleteTrendingNFT(nft.id)
-                            await loadNFTs()
-                            toast.success("NFT успешно удален", { theme: "dark" })
-                        }
-                        catch (e) {
-                            toast.error("Ошибка при удалении NFT", { theme: "dark" })
-                        }
-                    }
-                }
-            ]
-        })
+        setNftToDelete(nft)
+        setShowDeleteModal(true)
+    }
+
+    async function confirmDelete() {
+        try {
+            await deleteTrendingNFT(nftToDelete.id)
+            await loadNFTs()
+            toast.success("NFT успешно удален", { theme: "dark" })
+        }
+        catch (e) {
+            toast.error("Ошибка при удалении NFT", { theme: "dark" })
+        }
+        setShowDeleteModal(false)
+        setNftToDelete(null)
     }
 
     return (
@@ -183,7 +175,7 @@ function TrendingArt(props) {
                 </p>
                 {
                     props.showModal &&
-                    <GlobalModal handleShowModal={props.handleShowModal}>
+                    <Modal handleShowModal={props.handleShowModal}>
                         <form className="create-nft-form" onSubmit={submitForm}>
                             <h1>{updateMode ? "Update NFT" : "Create NFT"}</h1>
                             <div className="form-field">
@@ -220,9 +212,9 @@ function TrendingArt(props) {
                                 />
                             </div>
                             <div className="form-field">
-                                <label htmlFor="nft-image">NFT Image</label>
+                                <label htmlFor="nft-image">NFT Image URL</label>
                                 <input
-                                    type="url"
+                                    type="text"
                                     id="nft-image"
                                     name="image"
                                     placeholder="Enter NFT image URL"
@@ -246,17 +238,37 @@ function TrendingArt(props) {
                                 </button>
                             </div>
                         </form>
-                    </GlobalModal>
+                    </Modal>
+                }
+                {
+                    showDeleteModal && nftToDelete && (
+                        <Modal 
+                            handleShowModal={setShowDeleteModal}
+                            title="Подтверждение удаления"
+                            description={`Вы уверены, что хотите удалить NFT "${nftToDelete.name}"?`}
+                            buttons={[
+                                {
+                                    text: "Отмена",
+                                    className: "wallet-b",
+                                    onClick: () => setShowDeleteModal(false)
+                                },
+                                {
+                                    text: "Удалить",
+                                    className: "wallet-a",
+                                    onClick: confirmDelete
+                                }
+                            ]}
+                        />
+                    )
                 }
             </div>
 
             <div className="nft-items-wrapper">
                 {nfts.map(nft => {
                     return (
-                        // In the render section where you map through NFTs
                         <Item
                             key={nft.id}
-                            id={nft.id}  // Add this line
+                            id={nft.id}
                             name={nft.name}
                             price={nft.price}
                             authorName={nft.authorName}

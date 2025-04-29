@@ -7,6 +7,7 @@ import Link from "next/link"
 import "../style.scss"
 import { useRouter } from 'next/navigation'
 import { FcGoogle } from "react-icons/fc";
+import { setSessionCookie } from "@/utils/cookies"
 
 
 function Login() {
@@ -29,8 +30,7 @@ function Login() {
         signInWithEmailAndPassword(auth, formData.email, formData.password)
             .then((userCredential) => {
                 const user = userCredential.user
-                // Set session cookie
-                document.cookie = `session=${user.uid}; path=/; max-age=3600; secure; samesite=strict`
+                setSessionCookie(user.uid)
                 toast.success("Signed in successfully!", { theme: "dark" })
                 router.push('/')
             })
@@ -52,8 +52,7 @@ function Login() {
             const provider = new GoogleAuthProvider()
             const result = await signInWithPopup(auth, provider)
             const user = result.user
-            // Set session cookie
-            document.cookie = `session=${user.uid}; path=/; max-age=3600; secure; samesite=strict`
+            setSessionCookie(user.uid)
             toast.success("Signed in with Google successfully!", { theme: "dark" })
             router.push('/')
         } catch (error) {

@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { auth } from '@/firebase/config'
 import { registeredLinks as protectedRoutes, nonRegisteredLinks as publicRoutes } from '@/store'
 
 
@@ -35,4 +34,4 @@ export const config = {
     matcher: [
         '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
     ],
-}
+} 
