@@ -1,6 +1,15 @@
 @use "../../assets/styles/globals" as *;
 
-.profile-header {
+
+.profile-page-wrapper {
     padding: 20px 150px;
-    @include flex(row, center, flex-start)
+    @include flex(column, space-between, space-between, 50px);
+
+    .profile-header {
+        @include flex(row, center, space-between);
+
+        .left {
+            @include flex(row, center, flex-start);
+        }
+    }
 }

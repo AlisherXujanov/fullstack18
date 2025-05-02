@@ -7,12 +7,9 @@ import Link from "next/link"
 import Searchbox from "../Searchbox"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
-import { auth } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
 import { registeredLinks, nonRegisteredLinks } from "@/store"
-import { toast } from "react-toastify"
-import { removeSessionCookie } from "@/utils/cookies"
-import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
+import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt } from 'react-icons/fa'
 import { CgProfile } from "react-icons/cg"
 
 // This is OLD version react.js
@@ -22,8 +19,6 @@ import { CgProfile } from "react-icons/cg"
 // This is NEW version from next.js
 // RU: это новый способ
 // import Link from "next/link"
-
-
 
 function Nav(props) {
     const pathname = usePathname()
@@ -35,8 +30,6 @@ function Nav(props) {
         setIsMenuOpen(!isMenuOpen)
     }
 
-
-   
     return (
         <nav className="nav-wrapper">
             <div className="left">
@@ -55,7 +48,6 @@ function Nav(props) {
                 <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
                 <span className={`burger-line ${isMenuOpen ? 'open' : ''}`}></span>
             </div>
-
 
             <div className={`right ${isMenuOpen ? 'open' : ''}`}>
                 {

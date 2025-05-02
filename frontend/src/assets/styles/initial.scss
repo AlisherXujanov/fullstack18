@@ -97,3 +97,23 @@ body {
         }
     }
 }
+
+
+%btn {
+    @include flex(row, center, center);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $light;
+}
+
+
+.danger-btn {
+    @extend %btn;
+    background: $red-gradient;
+}
+
+.info-btn {
+    @extend %btn;
+    background: $indigo-gradient;
+}
