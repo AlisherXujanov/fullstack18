@@ -1,0 +1,6 @@
+@use "../../assets/styles/globals" as *;
+
+.profile-header {
+    padding: 20px 150px;
+    @include flex(row, center, flex-start)
+}

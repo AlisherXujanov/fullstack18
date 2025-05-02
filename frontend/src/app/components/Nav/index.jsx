@@ -13,6 +13,7 @@ import { registeredLinks, nonRegisteredLinks } from "@/store"
 import { toast } from "react-toastify"
 import { removeSessionCookie } from "@/utils/cookies"
 import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
+import { CgProfile } from "react-icons/cg"
 
 // This is OLD version react.js
 // RU: это старый способ
@@ -35,20 +36,7 @@ function Nav(props) {
     }
 
 
-    const handleLogout = async (e) => {
-        const ID = e.target.id
-        if (ID === 'logout-btn') {
-            try {
-                await auth.signOut()
-                removeSessionCookie()
-                toast.success('Logged out successfully', { theme: 'dark' })
-                router.push('/')
-            } catch (error) {
-                toast.error(error.message, { theme: 'dark' })
-            }
-        }
-    }
-
+   
     return (
         <nav className="nav-wrapper">
             <div className="left">
@@ -84,8 +72,8 @@ function Nav(props) {
                                     return <FaQuestionCircle className="nav-icon" />;
                                 case 'Login':
                                     return <FaSignInAlt className="nav-icon" />;
-                                case 'Logout':
-                                    return <FaSignOutAlt className="nav-icon" />;
+                                case 'Profile':
+                                    return <CgProfile className="nav-icon" />;
                                 default:
                                     return null;
                             }
@@ -96,10 +84,7 @@ function Nav(props) {
                                 href={link.path}
                                 key={link.title}
                                 className={pathname == link.path ? "active" : ""}
-                                onClick={(e) => {
-                                    setIsMenuOpen(false);
-                                    handleLogout(e);
-                                }}
+                                onClick={(e) => { setIsMenuOpen(false); }}
                                 id={link.id}
                             >
                                 {getIcon()}

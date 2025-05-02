@@ -8,7 +8,7 @@ const registeredLinks = [
     { title: "Trending", path: "/trending" },
     { title: "About", path: "/about" },
     { title: "FAQ", path: "/faq" },
-    { title: "Logout", path: "/#", id: "logout-btn" },
+    { title: "Profile", path: "/profile", id: "profile" },
 ]
 
 
