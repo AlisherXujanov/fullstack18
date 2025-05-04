@@ -6,6 +6,7 @@ import { auth } from "@/firebase/config"
 import { removeSessionCookie } from "@/utils/cookies"
 import { FaSignOutAlt } from 'react-icons/fa'
 import { useRouter } from "next/navigation"
+import { toast } from "react-toastify"
 
 function Profile() {
     const { user, loading } = useAuth()

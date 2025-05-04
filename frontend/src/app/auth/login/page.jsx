@@ -30,7 +30,16 @@ function Login() {
         signInWithEmailAndPassword(auth, formData.email, formData.password)
             .then((userCredential) => {
                 const user = userCredential.user
-                setSessionCookie(user.uid)
+                
+                // Store user data in cookies
+                const userData = {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    emailVerified: user.emailVerified
+                }
+                
+                setSessionCookie(user.uid, userData)
                 toast.success("Signed in successfully!", { theme: "dark" })
                 router.push('/')
             })
@@ -52,7 +61,16 @@ function Login() {
             const provider = new GoogleAuthProvider()
             const result = await signInWithPopup(auth, provider)
             const user = result.user
-            setSessionCookie(user.uid)
+            
+            // Store additional user data in cookies
+            const userData = {
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                emailVerified: user.emailVerified
+            }
+            
+            setSessionCookie(user.uid, userData)
             toast.success("Signed in with Google successfully!", { theme: "dark" })
             router.push('/')
         } catch (error) {

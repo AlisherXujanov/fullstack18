@@ -1,6 +1,7 @@
 "use client"
 
 import "../assets/styles/initial.scss"
+import "../assets/styles/fouc-fix.css"
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
 import ThemeProvider from './providers/ThemeProvider'
@@ -22,15 +23,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <title>Nft-Project</title>
-        <style>{`
-          .fouc-fix {
-            opacity: 0;
-            transition: opacity 0.1s ease-in;
-          }
-          .fouc-fix.ready {
-            opacity: 1;
-          }
-        `}</style>
       </head>
       <body>
         <ThemeProvider>
