@@ -1,3 +1,12 @@
+"use client"
+import { createContext } from "react"
+
+const context = createContext()
+
+const initialData = {
+    count: 0,
+}
+
 const nonRegisteredLinks = [
     { title: "About", path: "/about" },
     { title: "FAQ", path: "/faq" },
@@ -11,9 +20,9 @@ const registeredLinks = [
     { title: "Profile", path: "/profile", id: "profile" },
 ]
 
-
-
-export { 
-    nonRegisteredLinks, 
-    registeredLinks 
+export {
+    nonRegisteredLinks,
+    registeredLinks,
+    context,
+    initialData
 }

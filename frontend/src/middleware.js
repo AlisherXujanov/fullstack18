@@ -1,5 +1,18 @@
 import { NextResponse } from 'next/server'
-import { registeredLinks as protectedRoutes, nonRegisteredLinks as publicRoutes } from '@/store'
+
+const publicRoutes = [
+    { title: "About", path: "/about" },
+    { title: "FAQ", path: "/faq" },
+    { title: "Login", path: "/auth/login" },
+]
+const protectedRoutes = [
+    { title: "Explore", path: "/", },
+    { title: "Trending", path: "/trending" },
+    { title: "About", path: "/about" },
+    { title: "FAQ", path: "/faq" },
+    { title: "Profile", path: "/profile", id: "profile" },
+]
+
 
 
 // We MUST call this as 'middleware'
