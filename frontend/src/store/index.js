@@ -4,7 +4,8 @@ import { createContext } from "react"
 const context = createContext()
 
 const initialData = {
-    count: 0,
+    count: 1,
+    color: "red"
 }
 
 const nonRegisteredLinks = [

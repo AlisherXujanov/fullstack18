@@ -21,9 +21,15 @@ import Collections from "../../assets/images/collections.png"
 import Creators from "../../assets/images/creators.png"
 import Volurme from "../../assets/images/volurme.png"
 import NftDistro from "../../assets/images/nft-distro.png"
+import { useContext } from "react";
+import { context } from "../../store";
+
+
 
 function About() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const store = useContext(context)
+
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
@@ -52,7 +58,7 @@ function About() {
             />
 
             <section className="about-nft-distro">
-                <h2>NFT Distro</h2>
+                <h2 style={{ color: store.color }}>NFT Distro</h2>
                 <div className="nft-distro">
                     <Image 
                         src={NftDistro} 

@@ -1,15 +1,38 @@
+"use client"
+
 import Heading from "../components/Heading";
 import Test from "../components/Test";
 import "./style.scss"
+import { useContext } from "react";
+import { context } from "../../store";
 
 function Trending() {
+    const store = useContext(context)
+
+    function handleCountChange(e) {
+        const { name } = e.target
+        if (name === 'dec') {
+            store.setStore({ ...store, count: store.count - 1 })
+        }
+        else if (name === 'inc') {
+            store.setStore({ ...store, count: store.count + 1 })
+        }
+        else {
+            alert('Invalid button')
+        }
+    }
+
     return (
         <div className="trending-page-wrapper">
             <Heading>Trending</Heading>
-
+            <p style={{ color: store.color }}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, explicabo?</p>
 
             <div className="box">
                 <Test />
+                {store.count}
+                <hr />
+                <button onClick={handleCountChange} name="dec">- Decrement</button>
+                <button onClick={handleCountChange} name="inc">+ Increment</button>
             </div>
         </div>
     );
