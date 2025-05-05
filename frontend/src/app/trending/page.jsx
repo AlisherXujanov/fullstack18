@@ -33,6 +33,22 @@ function Trending() {
                 <hr />
                 <button onClick={handleCountChange} name="dec">- Decrement</button>
                 <button onClick={handleCountChange} name="inc">+ Increment</button>
+                <hr />
+                <input
+                    type="color"
+                    className="color-input"
+                    onChange={(e) => {
+                        store.setStore({ ...store, color: e.target.value })
+                    }}
+                />
+                <hr />
+                <input 
+                    type="range" 
+                    min={5} max={50}
+                    onChange={(e) => {
+                        store.setStore({ ...store, size: e.target.value })
+                    }}
+                />
             </div>
         </div>
     );

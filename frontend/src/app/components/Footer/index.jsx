@@ -5,9 +5,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import Logo from "../../../assets/icons/logo.png"
+import { useContext } from "react"
+import { context } from "../../../store"
 
 const Footer = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const store = useContext(context)
+
 
     useEffect(() => {
         // Немедленно проверяем localStorage при монтировании
@@ -79,7 +83,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="join-community">
-                        <h3>Join our community</h3>
+                        <h3 style={{ fontSize: store.size + "px" }}>Join our community</h3>
                         <div className="email-input">
                             <input type="email" placeholder="Enter your email address" />
                         </div>
