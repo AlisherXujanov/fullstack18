@@ -5,7 +5,8 @@ const context = createContext()
 
 const initialData = {
     count: 1,
-    color: "red"
+    color: "red",
+    size: 16,
 }
 
 const nonRegisteredLinks = [
