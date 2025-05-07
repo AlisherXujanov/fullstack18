@@ -1,55 +1,52 @@
 "use client"
 
+import { useState } from "react";
 import Heading from "../components/Heading";
-import Test from "../components/Test";
 import "./style.scss"
-import { useContext } from "react";
-import { context } from "../../store";
 
 function Trending() {
-    const store = useContext(context)
-
-    function handleCountChange(e) {
-        const { name } = e.target
-        if (name === 'dec') {
-            store.setStore({ ...store, count: store.count - 1 })
-        }
-        else if (name === 'inc') {
-            store.setStore({ ...store, count: store.count + 1 })
-        }
-        else {
-            alert('Invalid button')
-        }
-    }
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [age, setAge] = useState(0)
+    const [dob, setDob] = useState("")
+    const [gender, setGender] = useState("")
 
     return (
         <div className="trending-page-wrapper">
             <Heading>Trending</Heading>
-            <p style={{ color: store.color }}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, explicabo?</p>
-
-            <div className="box">
-                <Test />
-                {store.count}
-                <hr />
-                <button onClick={handleCountChange} name="dec">- Decrement</button>
-                <button onClick={handleCountChange} name="inc">+ Increment</button>
-                <hr />
-                <input
-                    type="color"
-                    className="color-input"
-                    onChange={(e) => {
-                        store.setStore({ ...store, color: e.target.value })
-                    }}
-                />
-                <hr />
-                <input 
-                    type="range" 
-                    min={5} max={50}
-                    onChange={(e) => {
-                        store.setStore({ ...store, size: e.target.value })
-                    }}
-                />
-            </div>
+            
+            <form>
+                <div>
+                    <input type="text" 
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    <p>{firstName}</p>
+                </div>
+                <div>
+                    <input type="text" 
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                    <p>{lastName}</p>
+                </div>
+                <div>
+                    <input type="number" 
+                        onChange={(e) => setAge(e.target.value)}
+                    />
+                    <p>{age}</p>
+                </div>
+                <div>
+                    <input type="date" 
+                        onChange={(e) => setDob(e.target.value)}
+                    />
+                    <p>{dob}</p>
+                </div>
+                <div>
+                    <input type="text" 
+                        onChange={(e) => setGender(e.target.value)}
+                    />
+                    <p>{gender}</p>
+                </div>
+            </form>
         </div>
     );
 }
