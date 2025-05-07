@@ -1,11 +1,10 @@
 "use client"
 
-import { useState, useReducer } from "react"
+import { useReducer } from "react"
 import Heading from "../components/Heading"
 import "./style.scss"
 
-
-const state = {
+const initialState = {
     firstName: "",
     lastName: "",
     age: 0,
@@ -15,57 +14,96 @@ const state = {
 
 function reducerFunction(state, action) {
     // action => payload
-    switch(action) {
-        case action.type === 'firstName':
+    switch(action.type) {
+        case 'firstName':
             return { ...state, firstName: action.value }
+        case 'lastName':
+            return { ...state, lastName: action.value }
+        case 'age':
+            return { ...state, age: action.value }
+        case 'dob':
+            return { ...state, dob: action.value }
+        case 'gender':
+            return { ...state, gender: action.value }
+        default:
+            return state
     }
 }
 
-
-
 function Trending() {
-    // const [firstName, setFirstName] = useState("")
-    // const [lastName, setLastName] = useState("")
-    // const [age, setAge] = useState(0)
-    // const [dob, setDob] = useState("")
-    // const [gender, setGender] = useState("")
-    const [state, dispatch] = useReducer(reducerFunction, state)
+    const [state, dispatch] = useReducer(reducerFunction, initialState)
 
+    const handleInputChange = (type) => (e) => {
+        dispatch({
+            type,
+            value: e.target.value
+        })
+    }
 
     return (
         <div className="trending-page-wrapper">
             <Heading>Trending</Heading>
             
-            <form>
-                <div>
-                    <input type="text" 
-                        onChange={(e) => setFirstName(e.target.value)}
+            <form className="form-container" onSubmit={(e) => e.preventDefault()}>
+                <div className="form-group">
+                    <label htmlFor="firstName">First Name</label>
+                    <input 
+                        id="firstName"
+                        type="text" 
+                        value={state.firstName}
+                        onChange={handleInputChange('firstName')}
+                        aria-label="First Name"
                     />
-                    <p>{firstName}</p>
+                    <p className="form-value">{state.firstName}</p>
                 </div>
-                <div>
-                    <input type="text" 
-                        onChange={(e) => setLastName(e.target.value)}
+
+                <div className="form-group">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input 
+                        id="lastName"
+                        type="text" 
+                        value={state.lastName}
+                        onChange={handleInputChange('lastName')}
+                        aria-label="Last Name"
                     />
-                    <p>{lastName}</p>
+                    <p className="form-value">{state.lastName}</p>
                 </div>
-                <div>
-                    <input type="number" 
-                        onChange={(e) => setAge(e.target.value)}
+
+                <div className="form-group">
+                    <label htmlFor="age">Age</label>
+                    <input 
+                        id="age"
+                        type="number" 
+                        value={state.age}
+                        onChange={handleInputChange('age')}
+                        aria-label="Age"
+                        min="0"
                     />
-                    <p>{age}</p>
+                    <p className="form-value">{state.age}</p>
                 </div>
-                <div>
-                    <input type="date" 
-                        onChange={(e) => setDob(e.target.value)}
+
+                <div className="form-group">
+                    <label htmlFor="dob">Date of Birth</label>
+                    <input 
+                        id="dob"
+                        type="date" 
+                        value={state.dob}
+                        onChange={handleInputChange('dob')}
+                        aria-label="Date of Birth"
                     />
-                    <p>{dob}</p>
+                    <p className="form-value">{state.dob}</p>
                 </div>
-                <div>
-                    <input type="text" 
-                        onChange={(e) => setGender(e.target.value)}
+
+                <div className="form-group">
+                    <label htmlFor="gender">Gender</label>
+                    <input 
+                        id="gender"
+                        type="text" 
+                        value={state.gender}
+                        onChange={handleInputChange('gender')}
+                        aria-label="Gender"
                     />
-                    <p>{gender}</p>
+                    <p className="form-value">{state.gender}</p>
                 </div>
             </form>
         </div>
