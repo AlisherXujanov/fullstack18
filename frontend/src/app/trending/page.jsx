@@ -1,115 +1,55 @@
 "use client"
 
-import { useReducer } from "react"
-import Heading from "../components/Heading"
+import Heading from "../components/Heading";
+import Test from "../components/Test";
 import "./style.scss"
-
-const initialState = {
-    firstName: "",
-    lastName: "",
-    age: 0,
-    dob: "",
-    gender: "",
-}
-
-function reducerFunction(state, action) {
-    // action => payload
-    switch(action.type) {
-        case 'firstName':
-            return { ...state, firstName: action.value }
-        case 'lastName':
-            return { ...state, lastName: action.value }
-        case 'age':
-            return { ...state, age: action.value }
-        case 'dob':
-            return { ...state, dob: action.value }
-        case 'gender':
-            return { ...state, gender: action.value }
-        default:
-            return state
-    }
-
-    // const KEYS = Object.keys(state)
-    // if (KEYS.includes(action.type)) {
-    //     return { ...state, [action.type]:action.value }
-    // }
-    // return state
-}   
+import { useContext } from "react";
+import { context } from "../../store";
 
 function Trending() {
-    const [state, dispatch] = useReducer(reducerFunction, initialState)
+    const store = useContext(context)
 
-    const handleInputChange = (type) => (e) => {
-        const value = e.target.value
-        dispatch({ type, value })
+    function handleCountChange(e) {
+        const { name } = e.target
+        if (name === 'dec') {
+            store.setStore({ ...store, count: store.count - 1 })
+        }
+        else if (name === 'inc') {
+            store.setStore({ ...store, count: store.count + 1 })
+        }
+        else {
+            alert('Invalid button')
+        }
     }
 
     return (
         <div className="trending-page-wrapper">
             <Heading>Trending</Heading>
-            
-            <form className="form-container" onSubmit={(e) => e.preventDefault()}>
-                <div className="form-group">
-                    <label htmlFor="firstName">First Name</label>
-                    <input 
-                        id="firstName"
-                        type="text" 
-                        value={state.firstName}
-                        onChange={handleInputChange('firstName')}
-                        aria-label="First Name"
-                    />
-                    <p className="form-value">{state.firstName}</p>
-                </div>
+            <p style={{ color: store.color }}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, explicabo?</p>
 
-                <div className="form-group">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input 
-                        id="lastName"
-                        type="text" 
-                        value={state.lastName}
-                        onChange={handleInputChange('lastName')}
-                        aria-label="Last Name"
-                    />
-                    <p className="form-value">{state.lastName}</p>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="age">Age</label>
-                    <input 
-                        id="age"
-                        type="number" 
-                        value={state.age}
-                        onChange={handleInputChange('age')}
-                        aria-label="Age"
-                        min="0"
-                    />
-                    <p className="form-value">{state.age}</p>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="dob">Date of Birth</label>
-                    <input 
-                        id="dob"
-                        type="date" 
-                        value={state.dob}
-                        onChange={handleInputChange('dob')}
-                        aria-label="Date of Birth"
-                    />
-                    <p className="form-value">{state.dob}</p>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="gender">Gender</label>
-                    <input 
-                        id="gender"
-                        type="text" 
-                        value={state.gender}
-                        onChange={handleInputChange('gender')}
-                        aria-label="Gender"
-                    />
-                    <p className="form-value">{state.gender}</p>
-                </div>
-            </form>
+            <div className="box">
+                <Test />
+                {store.count}
+                <hr />
+                <button onClick={handleCountChange} name="dec">- Decrement</button>
+                <button onClick={handleCountChange} name="inc">+ Increment</button>
+                <hr />
+                <input
+                    type="color"
+                    className="color-input"
+                    onChange={(e) => {
+                        store.setStore({ ...store, color: e.target.value })
+                    }}
+                />
+                <hr />
+                <input 
+                    type="range" 
+                    min={5} max={50}
+                    onChange={(e) => {
+                        store.setStore({ ...store, size: e.target.value })
+                    }}
+                />
+            </div>
         </div>
     );
 }
