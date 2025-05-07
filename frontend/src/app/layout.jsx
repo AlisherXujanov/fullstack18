@@ -30,10 +30,12 @@ export default function RootLayout({ children }) {
       <body>
         <context.Provider value={store}>
           <ThemeProvider>
-            <div className={`fouc-fix ${isReady ? 'ready' : ''}`}>
+            <div className={`fouc-fix page-container ${isReady ? 'ready' : ''}`}>
               <LoadingBar />
               <Nav user={user} />
-              {children}
+               <main className="content-wrap">
+                {children}
+              </main>
               <Footer />
               <ToastContainer />
             </div>
