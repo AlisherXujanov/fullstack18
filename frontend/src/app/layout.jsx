@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { ToastContainer } from 'react-toastify'
 import LoadingBar from './components/LoadingBar'
 import { useEffect, useState, useReducer } from 'react'
+import { globalReducer } from '../store/globalHelper'
 import { context, initialData } from '../store'
 
 export default function RootLayout({ children }) {

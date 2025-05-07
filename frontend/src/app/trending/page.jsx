@@ -12,10 +12,10 @@ function Trending() {
     function handleCountChange(e) {
         const { name } = e.target
         if (name === 'dec') {
-            store.setStore({ ...store, count: store.count - 1 })
+            store.setStore({ type: "decrement" })
         }
         else if (name === 'inc') {
-            store.setStore({ ...store, count: store.count + 1 })
+            store.setStore({ type: "increment" })
         }
         else {
             alert('Invalid button')
@@ -38,7 +38,7 @@ function Trending() {
                     type="color"
                     className="color-input"
                     onChange={(e) => {
-                        store.setStore({ ...store, color: e.target.value })
+                        store.setStore({ type: "SET_COLOR", value:e.target.value })
                     }}
                 />
                 <hr />
@@ -46,7 +46,7 @@ function Trending() {
                     type="range" 
                     min={5} max={50}
                     onChange={(e) => {
-                        store.setStore({ ...store, size: e.target.value })
+                        store.setStore({ type: "SET_SIZE", value: e.target.value })
                     }}
                 />
             </div>

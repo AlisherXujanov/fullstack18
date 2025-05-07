@@ -1,5 +1,5 @@
 function globalReducer(state, action) {
-    switch(state.type) {
+    switch(action.type) {
         case "decrement":
             return { ...state,
                 count: state.count-1
