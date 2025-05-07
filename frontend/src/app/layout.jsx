@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
             <div className={`fouc-fix page-container ${isReady ? 'ready' : ''}`}>
               <LoadingBar />
               <Nav user={user} />
-              <main className="content-wrap">
+               <main className="content-wrap">
                 {children}
               </main>
               <Footer />
