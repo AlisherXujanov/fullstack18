@@ -1,15 +1,36 @@
 "use client"
 
-import { useState } from "react";
-import Heading from "../components/Heading";
+import { useState, useReducer } from "react"
+import Heading from "../components/Heading"
 import "./style.scss"
 
+
+const state = {
+    firstName: "",
+    lastName: "",
+    age: 0,
+    dob: "",
+    gender: "",
+}
+
+function reducerFunction(state, action) {
+    // action => payload
+    switch(action) {
+        case action.type === 'firstName':
+            return { ...state, firstName: action.value }
+    }
+}
+
+
+
 function Trending() {
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [age, setAge] = useState(0)
-    const [dob, setDob] = useState("")
-    const [gender, setGender] = useState("")
+    // const [firstName, setFirstName] = useState("")
+    // const [lastName, setLastName] = useState("")
+    // const [age, setAge] = useState(0)
+    // const [dob, setDob] = useState("")
+    // const [gender, setGender] = useState("")
+    const [state, dispatch] = useReducer(reducerFunction, state)
+
 
     return (
         <div className="trending-page-wrapper">
