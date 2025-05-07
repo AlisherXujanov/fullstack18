@@ -28,16 +28,20 @@ function reducerFunction(state, action) {
         default:
             return state
     }
-}
+
+    // const KEYS = Object.keys(state)
+    // if (KEYS.includes(action.type)) {
+    //     return { ...state, [action.type]:action.value }
+    // }
+    // return state
+}   
 
 function Trending() {
     const [state, dispatch] = useReducer(reducerFunction, initialState)
 
     const handleInputChange = (type) => (e) => {
-        dispatch({
-            type,
-            value: e.target.value
-        })
+        const value = e.target.value
+        dispatch({ type, value })
     }
 
     return (
