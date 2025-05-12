@@ -12,6 +12,17 @@
 
 
 
+# Create a new branch
+1. git checkout -b branch-name
+
+When you have somthing to save, just commit it 
+RU: Когда что-то нужно сохранить, просто закоммитьте его
+2. git add .
+3. git commit -m "commit message"
+4. git push
+
+
+
 
 
 
