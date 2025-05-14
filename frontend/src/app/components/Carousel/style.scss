@@ -1,0 +1,109 @@
+.carousel {
+    margin: 0 auto;
+    padding: 0 40px 60px 40px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .carousel-slider {
+        width: 100%;
+        
+        .slide {
+            background: linear-gradient(145deg, #f5f5f5, #ffffff);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 15px;
+        transition: transform 0.5s ease;
+        border-radius: 20px;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .carousel-slide {
+        position: relative;
+        height: 100%;
+    }
+
+    .carousel .control-dots {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+
+            &.selected {
+                background: white;
+                transform: scale(1.2);
+            }
+
+            &:hover {
+                background: white;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .carousel {
+        max-width: 450px;
+        
+        .carousel-slider .slide {
+            height: 220px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel {
+        max-width: 100%;
+        padding: 0 20px 40px 20px;
+        
+        .carousel-slider .slide {
+            height: 200px;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .carousel {
+        padding: 0 15px 35px 15px;
+        
+        .carousel-slider .slide {
+            height: 180px;
+        }
+
+        .carousel-image {
+            padding: 10px;
+        }
+    }
+}
