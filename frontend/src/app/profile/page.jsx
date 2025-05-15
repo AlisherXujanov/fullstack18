@@ -83,7 +83,7 @@ function Profile() {
                             <h3>Recent Activity</h3>
                             <ul>
                                 <li>Completed a web development project.</li>
-                                <li>Joined a new team at work.</li>
+                                 <li>Joined a new team at work.</li>
                                 <li>Started learning Next.js Native!</li>
                             </ul>
                         </div>
