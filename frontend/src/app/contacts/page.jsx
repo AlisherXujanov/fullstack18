@@ -13,7 +13,7 @@ function Contacts() {
     })
 
     function submit(e) {
-        e.preventDefault(); // prevents the page from reloading when you hit “Send”
+        e.preventDefault(); // prevents the page from reloading when you hit "Send"
 
 
         const tempData = {
@@ -21,13 +21,12 @@ function Contacts() {
             time: new Date().toDateString(),
         }
 
-        emailjs.sendForm('service_rm3puvb', 'template_yb1619y', tempData, 'mbcCG18ZiPltCRfB-')
-            .then((result) => {
-                alert('Message Sent', result.text);
-                // show the user a success message
-            }, (error) => {
-                alert('An error occurred, Please try again', error.text);
-                // show the user an error
+        emailjs.send('', '', tempData, '')
+            .then(() => {
+                alert('Message sent successfully');
+            })
+            .catch(() => {
+                alert('An error occurred, please try again');
             });
 
         e.target.reset(); // resets the form after submission
@@ -46,7 +45,7 @@ function Contacts() {
             <div className="email-form">
                 <h1>Send Email</h1>
 
-                <form ref={form} onSubmit={(e) => submit(e)}>
+                <form onSubmit={submit}>
                     <input type="text" hidden value='напишите своё имя' name='from_name'
                         onChange={handleFormData}
                     />
