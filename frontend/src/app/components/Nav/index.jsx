@@ -66,6 +66,8 @@ function Nav(props) {
                                     return <FaSignInAlt className="nav-icon" />;
                                 case 'Profile':
                                     return <CgProfile className="nav-icon" />;
+                                case 'Contacts':
+                                    return <FaInfoCircle className="nav-icon" />;
                                 default:
                                     return null;
                             }
