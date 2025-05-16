@@ -19,6 +19,7 @@ const registeredLinks = [
     { title: "Trending", path: "/trending" },
     { title: "About", path: "/about" },
     { title: "FAQ", path: "/faq" },
+    { title: "Contacts", path: "/contacts" },
     { title: "Profile", path: "/profile", id: "profile" },
 ]
 

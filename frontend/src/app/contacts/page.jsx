@@ -1,7 +1,26 @@
 "use client"
 import emailjs from '@emailjs/browser'
+import { useRef } from 'react'
+import './style.scss'
 
 function Contacts() {
+
+    const form = useRef() // conntect to the form
+    function submit(e) {
+        e.preventDefault(); // prevents the page from reloading when you hit “Send”
+
+        emailjs.sendForm('service_rm3puvb', 'template_yb1619y', form.current, 'mbcCG18ZiPltCRfB-')
+            .then((result) => {
+                alert('Message Sent', result.text);
+                // show the user a success message
+            }, (error) => {
+                alert('An error occurred, Please try again', error.text);
+                // show the user an error
+            });
+
+        e.target.reset(); // resets the form after submission
+    }
+
     return (
         <div className="contacts-page-wrapper">
             <div className="email-form">
