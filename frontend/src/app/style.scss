@@ -1,0 +1,16 @@
+.home-page-wrapper {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 400px;
+}
+
+.carousel-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
