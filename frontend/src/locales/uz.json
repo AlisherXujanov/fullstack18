@@ -5,6 +5,12 @@
         "about": "Biz haqimizda",
         "faq": "FAQ",
         "contacts": "Bog'lanish",
-        "profile": "Profil"
+        "profile": "Profil",
+        "contactsPage": {
+            "title": "Email jo'natish",
+            "form": {
+                "email": "Email manzil"
+            }
+        }
     }
 }

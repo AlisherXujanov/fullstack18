@@ -2,8 +2,10 @@
 import emailjs from '@emailjs/browser'
 import { useState } from 'react'
 import './style.scss'
+import { useTranslation } from "react-i18next";
 
 function Contacts() {
+    const { t, i18n: { changeLanguage, language } } = useTranslation();
 
 
     const [form, setForm] = useState({
@@ -43,7 +45,7 @@ function Contacts() {
     return (
         <div className="contacts-page-wrapper">
             <div className="email-form">
-                <h1>Send Email</h1>
+                <h1>{t("contactsPage.title")}</h1>
 
                 <form onSubmit={submit}>
                     <input type="text" hidden value='напишите своё имя' name='from_name'
@@ -56,7 +58,7 @@ function Contacts() {
                         onChange={handleFormData}
                     />
 
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">{t("contactsPage.form.email")}</label>
                     <input type="email" id="exampleInputEmail1"
                         placeholder="Reciever email address" name='email'
                         onChange={handleFormData}

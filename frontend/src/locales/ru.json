@@ -5,6 +5,12 @@
         "about": "О нас",
         "faq": "FAQ",
         "contacts": "Контакты",
-        "profile": "Профиль"
+        "profile": "Профиль",
+        "contactsPage": {
+            "title": "Отправить Email",
+            "form": {
+                "email": "Email адрес"
+            }
+        }
     }
 }

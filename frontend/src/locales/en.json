@@ -5,6 +5,12 @@
         "about": "About",
         "faq": "FAQ",
         "contacts": "Contacts",
-        "profile": "Profile"
+        "profile": "Profile",
+        "contactsPage": {
+            "title": "Send Email",
+            "form": {
+                "email": "Email address"
+            }
+        }
     }
 }
