@@ -12,6 +12,8 @@ import { registeredLinks, nonRegisteredLinks } from "@/store"
 import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt } from 'react-icons/fa'
 import { CgProfile } from "react-icons/cg"
 
+import { useTranslation } from "react-i18next";
+
 // This is OLD version react.js
 // RU: это старый способ
 // import { Link } from "react-router-dom"
@@ -21,13 +23,21 @@ import { CgProfile } from "react-icons/cg"
 // import Link from "next/link"
 
 function Nav(props) {
+    const { t, i18n: { changeLanguage, language } } = useTranslation();
+
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
     const availableLinks = props.user ? registeredLinks : nonRegisteredLinks
 
-    const toggleMenu = async(e) => {
+    const toggleMenu = async (e) => {
         setIsMenuOpen(!isMenuOpen)
+    }
+
+    const handleChangeLanguage = (e) => {
+        e.preventDefault()
+        const newLanguage = e.target.name
+        changeLanguage(newLanguage);
     }
 
     return (
@@ -41,6 +51,10 @@ function Nav(props) {
                     />
                 </Link>
                 <Searchbox />
+
+                <a href="#">
+                    {t("key")}
+                </a>
             </div>
 
             <div className="burger-menu" onClick={toggleMenu}>
@@ -53,7 +67,7 @@ function Nav(props) {
                 {
                     availableLinks.map((link) => {
                         const getIcon = () => {
-                            switch(link.title) {
+                            switch (link.title) {
                                 case 'Explore':
                                     return <FaHome className="nav-icon" />;
                                 case 'Trending':
@@ -87,6 +101,17 @@ function Nav(props) {
                         )
                     })
                 }
+
+                <div className="dropdown">
+                    <a href="#" className="active">
+                        {language=="en" ? "English" : (language=='ru' ? "Russian": "Uzbek")}
+                    </a>
+                    <div className="drp-content langs">
+                        <a href="#" name="en" onClick={handleChangeLanguage}>English</a>
+                        <a href="#" name="ru" onClick={handleChangeLanguage}>Russian</a>
+                        <a href="#" name="uz" onClick={handleChangeLanguage}>Uzbek</a>
+                    </div>
+                </div>
             </div>
         </nav>
     );

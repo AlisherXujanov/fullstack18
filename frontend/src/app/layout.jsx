@@ -12,6 +12,9 @@ import LoadingBar from './components/LoadingBar'
 import { useEffect, useState, useReducer } from 'react'
 import { globalReducer } from '../store/globalHelper'
 import { context, initialData } from '../store'
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
+
 
 export default function RootLayout({ children }) {
   const { user, loading } = useAuth()
@@ -36,12 +39,15 @@ export default function RootLayout({ children }) {
           <ThemeProvider>
             <div className={`fouc-fix page-container ${isReady ? 'ready' : ''}`}>
               <LoadingBar />
-              <Nav user={user} />
-               <main className="content-wrap">
-                {children}
-              </main>
-              <Footer />
-              <ToastContainer />
+
+              <I18nextProvider i18n={i18n}>
+                <Nav user={user} />
+                <main className="content-wrap">
+                  {children}
+                </main>
+                <Footer />
+                <ToastContainer />
+              </I18nextProvider>
             </div>
           </ThemeProvider>
         </context.Provider>

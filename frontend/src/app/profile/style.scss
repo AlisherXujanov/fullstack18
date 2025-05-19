@@ -1,8 +1,9 @@
+@use "../../assets/styles/globals" as *;
+
 .profile-page-wrapper {
-  min-height: 100vh;
   background: linear-gradient(to right, #e0f7fa, #80deea);
   padding: 20px 350px;
-  @include flex(column, space-between, space-between, 50px);
+  @include flex(column, space-between, flex-start, 50px);
 
   .profile-header {
     width: 100%;

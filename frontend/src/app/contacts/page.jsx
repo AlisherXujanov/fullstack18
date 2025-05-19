@@ -21,7 +21,7 @@ function Contacts() {
             time: new Date().toDateString(),
         }
 
-        emailjs.send('', '', tempData, '')
+        emailjs.send('service_rm3puvb', 'template_yb1619y', tempData, 'mbcCG18ZiPltCRfB-')
             .then(() => {
                 alert('Message sent successfully');
             })
