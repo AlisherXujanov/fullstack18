@@ -140,7 +140,6 @@ body {
         border-radius: 10px;
         width: 200%;
         left: -50%;
-        display: none;
 
         a {
             display: block;
@@ -152,12 +151,6 @@ body {
             &:hover {
                 background-color: black;
             }
-        }
-    }
-
-    &:hover {
-        .drp-content {
-            display: block;
         }
     }
 }

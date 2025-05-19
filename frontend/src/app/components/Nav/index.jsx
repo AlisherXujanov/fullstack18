@@ -27,17 +27,24 @@ function Nav(props) {
 
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isLangsOpen, setIsLangsOpen] = useState(false)
     const router = useRouter()
     const availableLinks = props.user ? registeredLinks : nonRegisteredLinks
 
     const toggleMenu = async (e) => {
         setIsMenuOpen(!isMenuOpen)
     }
+    const toggleLangs = function (e) {
+        setIsLangsOpen(!isLangsOpen)
+    }
+
 
     const handleChangeLanguage = (e) => {
         e.preventDefault()
         const newLanguage = e.target.name
         changeLanguage(newLanguage);
+
+        toggleLangs()
     }
 
     return (
@@ -103,10 +110,15 @@ function Nav(props) {
                 }
 
                 <div className="dropdown">
-                    <a href="#" className="active drp-btn">
-                        {language=="en" ? "English" : (language=='ru' ? "Russian": "Uzbek")}
+                    <a href="#" className="active drp-btn"
+                        onClick={toggleLangs}
+                    >
+                        {language == "en" ? "English" : (language == 'ru' ? "Russian" : "Uzbek")}
                     </a>
-                    <div className="drp-content langs">
+                    <div
+                        className="drp-content langs"
+                        style={{ display: isLangsOpen ? "block" : "none" }}
+                    >
                         <a href="#" name="en" onClick={handleChangeLanguage}>English</a>
                         <a href="#" name="ru" onClick={handleChangeLanguage}>Russian</a>
                         <a href="#" name="uz" onClick={handleChangeLanguage}>Uzbek</a>
