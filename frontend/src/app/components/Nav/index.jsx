@@ -103,7 +103,7 @@ function Nav(props) {
                 }
 
                 <div className="dropdown">
-                    <a href="#" className="active">
+                    <a href="#" className="active drp-btn">
                         {language=="en" ? "English" : (language=='ru' ? "Russian": "Uzbek")}
                     </a>
                     <div className="drp-content langs">

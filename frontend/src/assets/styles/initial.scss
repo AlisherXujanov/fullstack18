@@ -128,3 +128,36 @@ body {
     @extend %btn;
     background: $indigo-gradient;
 }
+
+
+.dropdown {
+    position: relative;
+
+    .drp-content {
+        position: absolute;
+        z-index: 9;
+        background-color: rgb(0, 0, 0, 0.8);
+        border-radius: 10px;
+        width: 200%;
+        left: -50%;
+        display: none;
+
+        a {
+            display: block;
+            text-align: center;
+            color: snow;
+            border-radius: 10px;
+            padding: 10px;
+
+            &:hover {
+                background-color: black;
+            }
+        }
+    }
+
+    &:hover {
+        .drp-content {
+            display: block;
+        }
+    }
+}
