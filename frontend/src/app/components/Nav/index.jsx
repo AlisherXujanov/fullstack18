@@ -58,10 +58,6 @@ function Nav(props) {
                     />
                 </Link>
                 <Searchbox />
-
-                <a href="#">
-                    {t("key")}
-                </a>
             </div>
 
             <div className="burger-menu" onClick={toggleMenu}>
@@ -103,7 +99,9 @@ function Nav(props) {
                                 id={link.id}
                             >
                                 {getIcon()}
-                                <span>{link.title}</span>
+                                <span>
+                                    {t(link.title.toLowerCase())}
+                                </span>
                             </Link>
                         )
                     })

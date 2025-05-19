@@ -1,5 +1,10 @@
 {
     "translation": {
-        "key": "Hello world"
+        "explore": "Explore",
+        "trending": "Trending",
+        "about": "About",
+        "faq": "FAQ",
+        "contacts": "Contacts",
+        "profile": "Profile"
     }
 }

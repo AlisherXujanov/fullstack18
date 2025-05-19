@@ -1,5 +1,10 @@
 {
     "translation": {
-        "key": "Salom dunyo"
+        "explore": "Tanishish",
+        "trending": "Trendlar",
+        "about": "Biz haqimizda",
+        "faq": "FAQ",
+        "contacts": "Bog'lanish",
+        "profile": "Profil"
     }
 }
