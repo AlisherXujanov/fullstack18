@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 import './style.scss'
 
 const API_URL = 'http://localhost:3001'
 
 export default function NFTPage() {
+    const { t, i18n: { changeLanguage, language } } = useTranslation();
     const params = useParams()
     const [nft, setNft] = useState(null)
 
@@ -38,11 +40,11 @@ export default function NFTPage() {
                 <div className="nft-info">
                     <h1>{nft.name}</h1>
                     <div className="author">
-                        <p>Created by</p>
+                        <p>{t('author.title')}</p>
                         <h3>🤖 {nft.authorName}</h3>
                     </div>
                     <div className="price">
-                        <p>Current Bid</p>
+                        <p>{t('bid.title')}</p>
                         <h2>⭐ {nft.price}</h2>
                     </div>
                 </div>

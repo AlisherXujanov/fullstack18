@@ -5,6 +5,12 @@
         "about": "About",
         "faq": "FAQ",
         "contacts": "Contacts",
-        "profile": "Profile"
+        "profile": "Profile",
+        "author": {
+            "title" : "Created by"
+        },
+        "bid": {
+            "title" : "Current Bid"
+        }
     }
 }

@@ -5,6 +5,12 @@
         "about": "О нас",
         "faq": "FAQ",
         "contacts": "Контакты",
-        "profile": "Профиль"
+        "profile": "Профиль",
+        "author": {
+            "title" : "Автор"
+        },
+        "bid": {
+            "title" : "Текущая Cтавка"
+        }
     }
 }

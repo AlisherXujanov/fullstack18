@@ -1,38 +1,50 @@
-// There are 2 types of components:
-// 1. Client components  =>  Компоненты, которые выполняются на клиентских устройствах
-// 2. Server components  =>  Компоненты, которые выполняются на сервере
 "use client"
 
 import "./style.scss"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import trandingNfts from '@/store/db.json'
 
-
 const nftData = trandingNfts.trandingNfts || []
-
-// hook  ->  хуки, которые выполняются на клиентских устройствах
-// state ->  состояние компонента (или же память)
 
 function Searchbox() {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [debounceQuery, setDebounceQuery] = useState(query);
+    const [isVisible, setIsVisible] = useState(false);
+    const wrapperRef = useRef(null);
     const router = useRouter();
 
     const handleSelect = (id) => {
         router.push(`/nft/${id}`);
+        setIsVisible(false);
     };
-    // Установка задержки для фильтрации
+
+    // Отслеживание клика вне компонента
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setIsVisible(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Установка задержки
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setDebounceQuery(query);
-        }, 500); // задержка 500 мс
+        }, 500);
 
-        return () => clearTimeout(timeoutId); // очистка таймера при изменении query
+        return () => clearTimeout(timeoutId);
     }, [query]);
 
+    // Фильтрация данных
     useEffect(() => {
         if (debounceQuery) {
             const filtered = nftData.filter((nft) =>
@@ -46,11 +58,11 @@ function Searchbox() {
 
     const handleInput = (e) => {
         setQuery(e.target.value);
+        setIsVisible(true); // показать список при вводе
     };
 
-
     return (
-        <div className="search-wrapper">
+        <div className="search-wrapper" ref={wrapperRef}>
             <div className="search-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -61,16 +73,15 @@ function Searchbox() {
                     className="search-input"
                     value={query}
                     onChange={handleInput}
+                    onFocus={() => setIsVisible(true)}
                 />
-                {/* JSX syntax  =>  {...} */}
 
-
-                {query.length > 0 && (
+                {isVisible && query.length > 0 && (
                     <ul className="suggestions-container">
                         {results.length > 0 ? (
                             results.map((item) => (
                                 <Link href={`/nft/${item.id}`} key={item.id} legacyBehavior>
-                                    <li className="suggestion-item">
+                                    <li className="suggestion-item" onClick={() => handleSelect(item.id)}>
                                         <img src={item.image} alt={item.name} />
                                         <span className="nft-name">{item.name}</span>
                                     </li>
@@ -81,12 +92,8 @@ function Searchbox() {
                         )}
                     </ul>
                 )}
-
-
-
             </div>
         </div>
-
     );
 }
 

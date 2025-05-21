@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation'
 import { registeredLinks, nonRegisteredLinks } from "@/store"
 import { FaHome, FaFire, FaInfoCircle, FaQuestionCircle, FaSignInAlt } from 'react-icons/fa'
 import { CgProfile } from "react-icons/cg"
-
 import { useTranslation } from "react-i18next";
 
 // This is OLD version react.js

@@ -5,6 +5,12 @@
         "about": "Biz haqimizda",
         "faq": "FAQ",
         "contacts": "Bog'lanish",
-        "profile": "Profil"
+        "profile": "Profil",
+        "author": {
+            "title" : "Avtor"
+        },
+        "bid": {
+            "title" : "Joriy Kurs"
+        }
     }
 }
